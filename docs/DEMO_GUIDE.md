@@ -7,7 +7,7 @@ Use the public website with fictional questions. English is the default; select 
 | Time | Action | Suggested narration |
 | --- | --- | --- |
 | 0–15 s | Homepage → community invitation | “Some people never actively look for HIV services. We bring a transparent invitation into an everyday pharmacy visit, without inferring risk from purchases.” |
-| 15–30 s | Start journey → privacy preferences | “Ah Hong supports English and Chinese. AI is optional, and people can explore services without answering sensitive questions.” |
+| 15–30 s | Start journey → privacy preferences | “UU supports English and Chinese. AI is optional, and visitors can explore testing options without sharing a personal history.” |
 | 30–45 s | Ask “What is U=U?” | “The model identifies the topic. The answer comes from a source-linked library, with clear conditions and no individual diagnosis.” |
 | 45–60 s | Explore options → choose one | “The user sees both self-testing and professional support, and can check official arrangements before deciding.” |
 | 60–75 s | Review summary → remove a field → confirm | “People see exactly what a future referral could contain. This demo sends nothing to a clinic.” |
@@ -15,7 +15,7 @@ Use the public website with fictional questions. English is the default; select 
 
 ## Short Chinese narration
 
-「我們讓日常藥房接觸，成為一次知情、自願的 HIV 檢測機會。每個成年顧客收到相同邀請，不分析購物資料。進入阿康後，使用者可以選擇語言、是否使用 AI，也可以跳過問題。AI 幫助理解需求，答案來自附來源的內容。最後，使用者自行選擇服務，查看及修改摘要。現在的轉介是演示；真正試點會與服務機構共同落實。右邊的工作室展示我們將如何評估首次檢測與服務完成，而不是替個人打風險分數。」
+「我們讓日常藥房接觸，成為一次知情、自願的 HIV 檢測機會。每個成年顧客收到相同邀請，不分析購物資料。進入悠悠後，使用者可以選擇語言、是否使用 AI，也可以不聊天，直接了解檢測選項。AI 幫助辨識問題主題，健康資訊來自附來源的內容。最後，使用者自行選擇服務，查看及修改摘要。現在的轉介是演示；真正試點會與服務機構共同落實。右邊的工作室展示我們將如何評估首次檢測與服務完成，而不是替個人打風險分數。」
 
 ## Likely judge questions
 

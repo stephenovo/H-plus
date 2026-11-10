@@ -4,7 +4,7 @@ Checked on 10 November 2026 (Hong Kong time).
 
 ## Automated checks
 
-`npm test`: 14 passing Node tests.
+`npm test`: 18 passing Node tests.
 
 - English/Chinese priority routing precedes ordinary kit guidance.
 - Reactive self-test guidance distinguishes screening from diagnosis.
@@ -28,7 +28,8 @@ The live/local interfaces were inspected using the browser at 1440 px desktop an
 
 | Check | Observation |
 | --- | --- |
-| Homepage | Desktop and Traditional Chinese mobile layouts inspected |
+| Homepage | Desktop and Traditional Chinese mobile layouts inspected; guide name is UU / 悠悠 |
+| Conversation entry | Invitation-focused wording and direct access to testing options checked in both languages |
 | Mobile overflow | Document width equals viewport width at 390 px for checked journey pages |
 | AI off | U=U prompt returns labelled built-in guidance |
 | Live AI | English free-text U=U question returned `AI topic matching · source-based reply` |

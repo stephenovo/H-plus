@@ -72,8 +72,8 @@ export const knowledge = {
     source: "transmission",
   },
   greeting: {
-    en: "Hi, I’m Ah Hong. You can ask me about testing, privacy or U=U, or just take your time exploring. What would you like to know?",
-    zh: "你好，我係阿康。你可以問我檢測、私隱或 U=U，也可以慢慢看看。有咩想了解？",
+    en: "Hi, I’m UU. Did the H+ invitation raise a question? I can explain the testing options and privacy, or you can explore the options directly.",
+    zh: "你好，我係悠悠。H+ 呢張邀請有咩想問？我可以解釋檢測選項同私隱安排，你亦可以直接睇選項。",
     source: null,
   },
   thanks: {
@@ -82,8 +82,8 @@ export const knowledge = {
     source: null,
   },
   identity: {
-    en: "I’m Ah Hong, the guide in this H+ prototype. I help explain HIV testing options and privacy, then let you choose what to explore next.",
-    zh: "我係阿康，H+ 原型入面嘅嚮導。我會幫你了解 HIV 檢測選擇同私隱安排，再由你決定下一步。",
+    en: "I’m UU, the guide in this H+ prototype. I help explain the community invitation, HIV testing options and privacy. You decide what to explore next.",
+    zh: "我係悠悠，H+ 原型入面嘅嚮導。我會解釋社區邀請、HIV 檢測選項同私隱安排。下一步由你決定。",
     source: null,
   },
   weather: {

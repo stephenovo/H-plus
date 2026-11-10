@@ -252,7 +252,7 @@ function App() {
   }
   const steps = [
     t("Your comfort", "你的選擇"),
-    t("Ask Ah Hong", "問問阿康"),
+    t("Ask UU", "問問悠悠"),
     t("Explore options", "了解選項"),
     t("Your decision", "自主決定"),
   ];
@@ -288,7 +288,7 @@ function App() {
               className={page === "journey" ? "active" : ""}
               onClick={() => go("journey")}
             >
-              {t("Meet Ah Hong", "認識阿康")}
+              {t("Meet UU", "認識悠悠")}
             </button>
             <button
               className={page === "impact" ? "active" : ""}
@@ -352,13 +352,13 @@ function App() {
                 </h1>
                 <p className="hero-description">
                   {t(
-                    "Good health starts with a conversation. Explore HIV testing at your own pace, with a friendly guide and choices that stay yours.",
-                    "健康，由一次安心對話開始。跟阿康慢慢了解 HIV 檢測，每一步，都由你選擇。",
+                    "A community invitation gives you a private way to explore HIV testing. UU helps you understand the options; you decide what happens next.",
+                    "一張社區邀請，讓你私下了解 HIV 檢測。悠悠幫你看清選項，下一步由你決定。",
                   )}
                 </p>
                 <div className="hero-actions">
                   <button className="button primary" onClick={start}>
-                    {t("Have a chat with Ah Hong", "與阿康聊聊")}
+                    {t("Explore with UU", "與悠悠了解選項")}
                     <ArrowUpRight size={20} />
                   </button>
                   <button
@@ -395,7 +395,7 @@ function App() {
                   <div className="phone-head">
                     <Mascot small />
                     <div>
-                      <strong>{t("Ah Hong", "街坊阿康")}</strong>
+                      <strong>{t("UU", "悠悠")}</strong>
                       <small>
                         {t("Your community health guide", "你的社區健康嚮導")}
                       </small>
@@ -408,8 +408,8 @@ function App() {
                     </div>
                     <div className="mock-bubble">
                       {t(
-                        "Hello, I’m Ah Hong 👋 What would help you feel more comfortable today?",
-                        "你好，我係阿康 👋 今日有咩想慢慢了解？",
+                        "Hi, I’m UU 👋 Did this invitation leave you with a question?",
+                        "你好，我係悠悠 👋 呢張邀請有咩想問？",
                       )}
                     </div>
                     <div className="mock-bubble user">
@@ -500,16 +500,16 @@ function App() {
                     <MessageCircle />,
                     t("A conversation, on your terms", "按你的意願，開始對話"),
                     t(
-                      "Ask questions, skip what feels personal, and understand your choices with Ah Hong.",
-                      "問你想知的，跳過不想答的，跟阿康了解自己的選項。",
+                      "Ask UU what this invitation means, or go straight to the testing options. No personal history is required.",
+                      "可以問悠悠呢張邀請有咩意思，亦可以直接睇檢測選項，毋須交代個人經歷。",
                     ),
                   ],
                   [
                     <Heart />,
                     t("A next step you choose", "自主選擇下一步"),
                     t(
-                      "Explore self-testing or professional support. Review every detail before you share.",
-                      "了解自測或專業支援；分享前，先看清楚每一項資料。",
+                      "Compare self-testing with professional support, then review a sample next step before you decide.",
+                      "比較自測與專業支援，再看看下一步的模擬安排，由你決定。",
                     ),
                   ],
                 ].map(([icon, title, body], i) => (
@@ -556,7 +556,7 @@ function App() {
                     go("journey");
                   }}
                 >
-                  {t("Understand U=U with Ah Hong", "與阿康了解 U=U")}
+                  {t("Understand U=U with UU", "與悠悠了解 U=U")}
                   <ArrowRight size={17} />
                 </button>
               </div>
@@ -596,11 +596,11 @@ function App() {
               <aside className="journey-sidebar">
                 <div className="guide-profile">
                   <Mascot />
-                  <h3>{t("Hello, I’m Ah Hong.", "你好，我係阿康。")}</h3>
+                  <h3>{t("Hello, I’m UU.", "你好，我係悠悠。")}</h3>
                   <p>
                     {t(
-                      "I’m here to help you understand your choices. You can skip questions or leave whenever you like.",
-                      "我會幫你了解選擇。你可以跳過問題，或隨時離開。",
+                      "I can explain this invitation and the available testing options. You can move on without chatting, or leave at any time.",
+                      "我可以解釋呢張邀請同檢測選項。你唔使傾偈都可以繼續，亦可隨時離開。",
                     )}
                   </p>
                 </div>
@@ -723,7 +723,7 @@ function App() {
                       className="button primary full"
                       onClick={() => next(1)}
                     >
-                      {t("Continue to Ah Hong", "開始與阿康對話")}
+                      {t("Continue to UU", "開始與悠悠對話")}
                       <ArrowRight size={18} />
                     </button>
                   </>
@@ -735,7 +735,7 @@ function App() {
                         <span className="step-label">
                           02 / {t("ASK AT YOUR OWN PACE", "按你的步伐，慢慢問")}
                         </span>
-                        <h2>{t("What’s on your mind?", "有咩想了解？")}</h2>
+                        <h2>{t("Questions before you decide?", "決定之前，有咩想問？")}</h2>
                       </div>
                       <span className="status-badge">
                         <span />
@@ -746,8 +746,8 @@ function App() {
                     </div>
                     <p className="muted">
                       {t(
-                        "Ask about testing, privacy or U=U. You can also skip the conversation.",
-                        "可以問檢測、私隱或 U=U，也可以直接跳過對話。",
+                        "Wondering what this invitation means or what testing options are available? Ask UU, or explore the options below.",
+                        "想知道呢張邀請有咩意思，或者檢測有咩選擇？問悠悠，亦可以直接睇下面嘅選項。",
                       )}
                     </p>
                     <div className="chat-log" aria-live="polite">
@@ -755,8 +755,8 @@ function App() {
                         <Mascot small />
                         <div className="message-content">
                           {t(
-                            "Hello! There’s no right or wrong question. What would help you feel ready to take a next step?",
-                            "你好！有問題就可以問。你想先了解邊一方面，再決定下一步？",
+                            "Hi, I’m UU. I can explain the invitation, testing choices and privacy. What would you like to know?",
+                            "你好，我係悠悠。我可以解釋呢張邀請、檢測選擇同私隱安排。你想先知邊樣？",
                           )}
                         </div>
                       </div>
@@ -812,8 +812,8 @@ function App() {
                       {busy && (
                         <div className="thinking">
                           {t(
-                            "Ah Hong is finding the right information…",
-                            "阿康正尋找相關資訊……",
+                            "UU is finding the right information…",
+                            "悠悠正尋找相關資訊……",
                           )}
                         </div>
                       )}
@@ -897,19 +897,6 @@ function App() {
                     >
                       {t("Explore testing options", "了解檢測選項")}
                       <ArrowRight size={18} />
-                    </button>
-                    <button
-                      className="skip-step"
-                      onClick={() => {
-                        run.current++;
-                        setBusy(false);
-                        next(2);
-                      }}
-                    >
-                      {t(
-                        "Skip questions — continue without answering",
-                        "跳過問題，繼續了解",
-                      )}
                     </button>
                   </>
                 )}
@@ -1034,7 +1021,7 @@ function App() {
                       04 / {t("YOUR DECISION", "由你決定")}
                     </span>
                     <h2>
-                      {t("See it before you share it.", "分享之前，先看清楚。")}
+                      {t("Review a sample next step.", "先看看下一步。")}
                     </h2>
                     <p className="muted">
                       {t(

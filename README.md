@@ -23,7 +23,7 @@
 
 ## Why H+
 
-**H+ means HIV plus one test and HIV plus Health.** Ah Hong (阿康) carries the idea of health in a familiar Cantonese name.
+**H+ means HIV plus one test and HIV plus Health.** UU (悠悠) is the guide who helps visitors explore the invitation and their testing choices.
 
 An everyday pharmacy visit can be an opportunity to learn about HIV testing—without a shopping profile, an individual risk label, or pressure to participate.
 
@@ -36,9 +36,9 @@ Hong Kong CHP reported that around half of newly reported cases were late presen
 ## Try it in 90 seconds
 
 1. Open the [live experience](https://h-plus.stephenovo.workers.dev) and view the community invitation.
-2. Meet **Ah Hong**. Choose English or Traditional Chinese, larger text, and whether to enable AI.
+2. Meet **UU (悠悠)**. Choose English or Traditional Chinese, larger text, and whether to enable AI.
 3. Ask “What is U=U?” or “Who sees my information?” Every answer identifies its source or explains this prototype’s own behaviour.
-4. Explore self-testing and provider-based testing. Questions can be skipped.
+4. Explore self-testing and provider-based testing directly; chatting is optional.
 5. Edit the sample summary, remove a field, and explicitly confirm the demo plan.
 6. Open [Pilot studio](https://h-plus.stephenovo.workers.dev/#impact) to explore **clearly labelled synthetic scenarios**.
 
@@ -49,7 +49,7 @@ Use fictional questions only. No booking, kit dispatch or real referral occurs.
 ```mermaid
 flowchart LR
     A["Same community invitation\nfor adult customers"] --> B["Private preferences\nAI off by default"]
-    B --> C["Ask Ah Hong\nor skip questions"]
+    B --> C["Ask UU\nor explore options directly"]
     C --> D["Understand testing options"]
     D --> E["Review and edit\na demo summary"]
     E --> F["Choose an official service\non its own website"]
@@ -61,7 +61,7 @@ flowchart LR
 | --- | --- |
 | **Community invitation** | Printable receipt-style invitation with a QR code to the live journey |
 | **Private preferences** | English / Traditional Chinese, larger text, optional AI, clear-session control |
-| **Ah Hong conversation** | Live Workers AI topic matching; fixed, source-linked answers; built-in guidance without AI |
+| **UU conversation** | Live Workers AI topic matching; prepared replies with sources for health information; built-in guidance without AI |
 | **Priority guidance** | Deterministic routing for recognised recent-exposure and reactive-result questions |
 | **U=U education** | Accurate sexual-transmission scope; treatment and sustained viral-load follow-up conditions |
 | **Service choices** | Self-testing and provider-based options, official links, no artificial age-based restriction |
@@ -75,7 +75,7 @@ flowchart LR
 
 <details>
   <summary><strong>See the Traditional Chinese mobile experience</strong></summary>
-  <p align="center"><img src="docs/assets/mobile-zh.jpg" width="330" alt="Traditional Chinese mobile conversation with Ah Hong" /></p>
+  <p align="center"><img src="docs/assets/mobile-zh.jpg" width="330" alt="Traditional Chinese mobile conversation with UU" /></p>
 </details>
 
 <details>
@@ -148,7 +148,7 @@ npm run check   # both
 
 The tests cover consent rejection, same-origin enforcement, oversized input, rate limits, unsafe model prose, bilingual content, priority routing and explicit fallback. GitHub Actions runs them and the production build on pushes and pull requests.
 
-The deployed interface was also checked at **1440 px desktop and 390 px mobile**: English and Traditional Chinese navigation, live AI replies, skipped questions, choice gating, removing summary fields, confirmation, session clearing, modal dismissal and synthetic-scenario switching. See [verification notes](docs/VERIFICATION.md). Screenshots are captured from the running app, not design mockups.
+The deployed interface was also checked at **1440 px desktop and 390 px mobile**: English and Traditional Chinese navigation, live AI replies, direct access to testing options, choice gating, removing summary fields, confirmation, session clearing, modal dismissal and synthetic-scenario switching. See [verification notes](docs/VERIFICATION.md). Screenshots are captured from the running app, not design mockups.
 
 ## Repository map
 
