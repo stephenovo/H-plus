@@ -706,8 +706,8 @@ function App() {
                         </strong>
                         <span>
                           {t(
-                            "I agree to send each question to Cloudflare Workers AI to identify its topic. Answers come from a source-linked knowledge library. Without AI, built-in guidance still works.",
-                            "我同意將每條問題傳送至 Cloudflare Workers AI 作主題辨識。答案來自附來源的知識庫。不啟用 AI，仍可使用內置指引。",
+                            "I agree to send each question to Cloudflare Workers AI to identify its topic. Health answers come from a source-linked knowledge library. Without AI, built-in guidance still works.",
+                            "我同意將每條問題傳送至 Cloudflare Workers AI 作主題辨識。健康資訊來自附來源的知識庫。不啟用 AI，仍可使用內置指引。",
                           )}
                         </span>
                       </span>
@@ -781,8 +781,12 @@ function App() {
                               <small className="answer-mode">
                                 {m.mode === "ai"
                                   ? t(
-                                      "AI topic matching · source-based reply",
-                                      "AI 主題辨識・來源知識庫回覆",
+                                      m.source
+                                        ? "AI topic matching · source-based reply"
+                                        : "AI topic matching · prepared reply",
+                                      m.source
+                                        ? "AI 主題辨識・來源知識庫回覆"
+                                        : "AI 主題辨識・預設回覆",
                                     )
                                   : m.mode === "fallback"
                                     ? t(
@@ -794,6 +798,11 @@ function App() {
                                           "Priority guidance · rule-based",
                                           "優先指引・固定規則",
                                         )
+                                      : m.mode === "smalltalk"
+                                        ? t(
+                                            "Friendly reply · built-in",
+                                            "輕鬆對話・內置回覆",
+                                          )
                                       : t("Built-in guidance", "內置指引")}
                               </small>
                             )}

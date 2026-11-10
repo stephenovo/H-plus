@@ -24,6 +24,11 @@ export const sources = [
     title: "NIH · Understanding HIV transmission",
     url: "https://hivinfo.nih.gov/understanding-hiv/fact-sheets/understanding-hiv-transmission",
   },
+  {
+    id: "weather",
+    title: "Hong Kong Observatory · Weather",
+    url: "https://www.hko.gov.hk/en/index.html",
+  },
 ];
 export const knowledge = {
   testing: {
@@ -66,10 +71,30 @@ export const knowledge = {
     zh: "不會。HIV 不會透過一起吃飯、擁抱、握手等日常接觸傳播；這與對方是否達到病毒載量無法檢測無關。U=U 是另一個概念，指接受治療並持續抑制病毒後，不會透過性接觸傳播 HIV。",
     source: "transmission",
   },
+  greeting: {
+    en: "Hi, I’m Ah Hong. You can ask me about testing, privacy or U=U, or just take your time exploring. What would you like to know?",
+    zh: "你好，我係阿康。你可以問我檢測、私隱或 U=U，也可以慢慢看看。有咩想了解？",
+    source: null,
+  },
+  thanks: {
+    en: "You’re welcome. Take your time, and ask another question whenever you like. The next step is always your choice.",
+    zh: "唔使客氣。你可以慢慢想，有問題再問；下一步由你自己決定。",
+    source: null,
+  },
+  identity: {
+    en: "I’m Ah Hong, the guide in this H+ prototype. I help explain HIV testing options and privacy, then let you choose what to explore next.",
+    zh: "我係阿康，H+ 原型入面嘅嚮導。我會幫你了解 HIV 檢測選擇同私隱安排，再由你決定下一步。",
+    source: null,
+  },
+  weather: {
+    en: "I don’t have live weather data, so I won’t guess today’s conditions. For Hong Kong, you can check the Observatory’s latest forecast. If you want, we can also talk about your health questions here.",
+    zh: "我冇即時天氣資料，所以唔會估今日嘅天氣。香港嘅最新預報可以睇天文台；如果你有健康方面嘅問題，亦可以喺度問我。",
+    source: "weather",
+  },
   unknown: {
-    en: "I can help explain testing choices, privacy, U=U and how to find professional support. I cannot assess symptoms, interpret a personal test or recommend medication. Try one of the topics below, or use the official testing service for individual advice.",
-    zh: "我可以解釋檢測選擇、私隱、U=U，以及如何尋找專業支援。我不能評估症狀、判讀個人檢測或建議用藥。你可選擇下面的主題，或向官方檢測服務尋求個人建議。",
-    source: "guidance",
+    en: "I’m not sure I can answer that accurately. I can help with HIV testing choices, privacy, U=U and finding professional support. For a personal result, symptoms or medication, please ask a healthcare professional.",
+    zh: "呢題我未必可以準確回答。我可以幫你了解 HIV 檢測選擇、私隱、U=U，同埋點樣尋找專業支援。個人檢測結果、症狀或用藥問題，請向醫護查詢。",
+    source: null,
   },
 };
 export function localTopic(input) {
@@ -100,6 +125,13 @@ export function localTopic(input) {
   if (/clinic|appoint|provider|診所|诊所|預約|预约|服務點/.test(t))
     return "clinic";
   if (/test|檢測|检测|篩查|筛查/.test(t)) return "testing";
+  if (/weather|forecast|rain|天氣|天气|落雨|下雨/.test(t)) return "weather";
+  if (/who are you|what are you|your name|你係邊個|你是谁|你是誰|你叫什么|你叫咩|你叫什麼/.test(t))
+    return "identity";
+  if (/^(?:hi|hello|hey|你好|哈囉|哈喽|嗨)[！!。.\s]*$/.test(t))
+    return "greeting";
+  if (/^(?:thank you|thanks|thx|謝謝|谢谢|多謝|多谢|唔該|唔该)[！!。.\s]*$/.test(t))
+    return "thanks";
   return "unknown";
 }
 export function answer(topic, lang = "en", mode = "guide") {

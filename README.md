@@ -85,24 +85,24 @@ flowchart LR
 
 ## AI with a deliberately bounded job
 
-The live model is **Llama 3.1 8B Instruct Fast on Cloudflare Workers AI**. It classifies a question into a small allowlist of topics; it does not generate medical advice shown to the user. The server then returns the corresponding authored answer and source.
+The live model is **Llama 3.1 8B Instruct Fast on Cloudflare Workers AI**. It classifies a question into a small allowlist of topics; it does not generate medical advice shown to the user. The server then returns the corresponding authored answer and a source for health information. Greetings, thanks, identity and weather questions receive brief prepared conversational replies. The weather reply links to the Hong Kong Observatory rather than inventing a live forecast.
 
 ```mermaid
 flowchart TD
     Q["Question"] --> CONSENT{"AI enabled?"}
     CONSENT -->|No| LOCAL["Browser topic rules"]
     CONSENT -->|Yes| SERVER["Same-origin API\ninput limits + rate limit"]
-    SERVER --> PRIORITY{"Recognised priority question?"}
+    SERVER --> PRIORITY{"Recognised priority or small-talk question?"}
     PRIORITY -->|Yes| RULES["Fixed guidance"]
     PRIORITY -->|No| AI["Workers AI\ntopic classification only"]
     AI --> VALIDATE["Validate allowlisted label"]
     VALIDATE --> KB["Authored bilingual knowledge library"]
     LOCAL --> KB
     RULES --> KB
-    KB --> OUT["Answer + source + mode label"]
+    KB --> OUT["Answer + source if applicable + mode label"]
 ```
 
-If the model is unavailable, the UI explicitly labels the built-in fallback. Recognised urgent, reactive-result and everyday-contact questions bypass the model. Output is rendered as text, not model-generated HTML. These boundaries reduce the model’s role; they do **not** establish clinical validation or guarantee that every wording is correctly understood.
+If the model is unavailable, the UI explicitly labels the built-in fallback. Recognised urgent, reactive-result, everyday-contact and small-talk questions bypass the model. Output is rendered as text, not model-generated HTML. These boundaries reduce the model’s role; they do **not** establish clinical validation or guarantee that every wording is correctly understood.
 
 ## Privacy by implementation
 

@@ -41,6 +41,18 @@ test("everyday contact questions return contact guidance before U=U", () => {
   assert.match(answer("contact", "zh").text, /^不會。/);
   assert.equal(answer("contact").source.id, "transmission");
 });
+test("low-stakes conversation has matching responses without invented live facts", () => {
+  for (const [question, topic] of [
+    ["今天天气怎么样？", "weather"],
+    ["香港今日天氣如何？", "weather"],
+    ["Hello!", "greeting"],
+    ["謝謝！", "thanks"],
+    ["你係邊個？", "identity"],
+  ])
+    assert.equal(localTopic(question), topic, question);
+  assert.match(answer("weather", "zh").text, /冇即時天氣資料/);
+  assert.equal(answer("weather").source.id, "weather");
+});
 test("U=U includes sustained treatment, sexual transmission, and follow-up", () => {
   assert.match(answer("uu").text, /maintain/);
   assert.match(answer("uu").text, /through sex/);
@@ -116,6 +128,25 @@ test("casual contact rule bypasses a wrong U=U model label", async () => {
   assert.equal(body.mode, "safety-rule");
   assert.equal(body.topic, "contact");
   assert.equal(body.text, knowledge.contact.zh);
+});
+test("weather question does not accept a fabricated model answer", async () => {
+  let called = false;
+  const r = await worker.fetch(
+    request({ message: "今天天气怎么样？", lang: "zh", aiConsent: true }),
+    {
+      AI: {
+        run() {
+          called = true;
+          return { response: "It is sunny today." };
+        },
+      },
+    },
+  );
+  const body = await r.json();
+  assert.equal(called, false);
+  assert.equal(body.mode, "smalltalk");
+  assert.equal(body.topic, "weather");
+  assert.equal(body.text, knowledge.weather.zh);
 });
 test("model outage has explicit fallback", async () => {
   const r = await worker.fetch(

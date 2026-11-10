@@ -31,13 +31,13 @@ The sequence is:
 
 1. Validate request and consent.
 2. Apply rate limit.
-3. Route recognised exposure/reactive-result phrases directly to authored guidance.
+3. Route recognised urgent, reactive-result, everyday-contact and light conversational phrases directly to authored replies.
 4. Ask `@cf/meta/llama-3.1-8b-instruct-fast` for one topic label.
 5. Accept only own properties of the topic library; reject arbitrary generated prose.
-6. Return authored text, a source and a mode label.
+6. Return authored text, an applicable source and a mode label.
 7. On provider failure, return explicit built-in fallback.
 
-Response modes: `ai`, `safety-rule`, `fallback`. Browser-only responses use `guide`. Recognised urgent, reactive-result and everyday-contact questions use the `safety-rule` path before model classification. The model does not receive a full conversation, a summary, a test image, shopping history or identity.
+Response modes: `ai`, `safety-rule`, `smalltalk`, `fallback`. Browser-only responses use `guide`. Recognised urgent, reactive-result and everyday-contact questions use the `safety-rule` path before model classification; greetings, thanks, assistant identity and weather use `smalltalk`. The model does not receive a full conversation, a summary, a test image, shopping history or identity.
 
 ## Knowledge
 
