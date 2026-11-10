@@ -14,7 +14,7 @@ Checked on 10 November 2026 (Hong Kong time).
 - Every knowledge topic has both languages.
 - Missing AI consent rejects the request before inference.
 - Valid model labels resolve to canonical source-based responses.
-- Recognised urgent requests bypass model execution.
+- Recognised urgent, reactive-result and everyday-contact requests bypass model execution. The Chinese question “一起吃饭或拥抱会传染吗？” returns casual-contact guidance even if a model would label it U=U.
 - Provider outage returns labelled fallback.
 - Arbitrary model prose is not returned to the UI.
 - Oversized messages, cross-origin calls and exhausted rate limits are rejected.

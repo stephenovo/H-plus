@@ -54,7 +54,7 @@ export default {
         );
     }
     const rule = localTopic(body.message);
-    if (["urgent", "reactive"].includes(rule))
+    if (["urgent", "reactive", "contact"].includes(rule))
       return json(answer(rule, body.lang, "safety-rule"));
     if (!env.AI) return json(answer(rule, body.lang, "fallback"));
     try {

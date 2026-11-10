@@ -19,6 +19,11 @@ export const sources = [
     title: "CDC · Post-exposure prophylaxis",
     url: "https://www.cdc.gov/hivnexus/hcp/pep/index.html",
   },
+  {
+    id: "transmission",
+    title: "NIH · Understanding HIV transmission",
+    url: "https://hivinfo.nih.gov/understanding-hiv/fact-sheets/understanding-hiv-transmission",
+  },
 ];
 export const knowledge = {
   testing: {
@@ -57,9 +62,9 @@ export const knowledge = {
     source: "guidance",
   },
   contact: {
-    en: "HIV is not transmitted through everyday contact such as sharing meals or hugging. This is true regardless of someone’s viral load. U=U specifically describes prevention of sexual transmission through sustained viral suppression on treatment.",
-    zh: "HIV 不會透過一起吃飯、擁抱等日常接觸傳播，這不取決於對方的病毒載量。U=U 則是指接受治療並持續抑制病毒後，不會透過性接觸傳播。",
-    source: "guidance",
+    en: "No. HIV is not transmitted by sharing a meal, hugging, shaking hands or other everyday contact. This does not depend on whether the person has an undetectable viral load. U=U is a separate concept about sexual transmission when HIV is durably suppressed through treatment.",
+    zh: "不會。HIV 不會透過一起吃飯、擁抱、握手等日常接觸傳播；這與對方是否達到病毒載量無法檢測無關。U=U 是另一個概念，指接受治療並持續抑制病毒後，不會透過性接觸傳播 HIV。",
+    source: "transmission",
   },
   unknown: {
     en: "I can help explain testing choices, privacy, U=U and how to find professional support. I cannot assess symptoms, interpret a personal test or recommend medication. Try one of the topics below, or use the official testing service for individual advice.",
@@ -70,6 +75,12 @@ export const knowledge = {
 export function localTopic(input) {
   const t = input.toLowerCase();
   if (
+    /hug|hugg|sharing (?:a )?meal|share (?:a )?meal|sharing food|eat(?:ing)? together|shake hands|handshake|casual contact|擁抱|拥抱|抱抱|吃飯|吃饭|共餐|聚餐|一起吃|同桌|握手|日常接觸|日常接触/.test(
+      t,
+    )
+  )
+    return "contact";
+  if (
     /\bpep\b|expos|72|yesterday|last night|unprotected|condom.*broke|needle|昨[天晚日]|暴露|接觸.*hiv|無套|破[裂了]|針刺/.test(
       t,
     )
@@ -78,8 +89,6 @@ export function localTopic(input) {
   if (/reactive|positive|陽性|阳性|有反應|有反应/.test(t)) return "reactive";
   if (/u\s*=\s*u|undetect|viral load|測不到|测不到|病毒載量/.test(t))
     return "uu";
-  if (/hug|meal|sharing food|擁抱|拥抱|吃飯|吃饭|日常接觸/.test(t))
-    return "contact";
   if (
     /priva|share|data|roommate|family|confiden|record|私隱|隐私|分享|家人|室友|保密|記錄|记录/.test(
       t,

@@ -37,7 +37,7 @@ The sequence is:
 6. Return authored text, a source and a mode label.
 7. On provider failure, return explicit built-in fallback.
 
-Response modes: `ai`, `safety-rule`, `fallback`. Browser-only responses use `guide`. The model does not receive a full conversation, a summary, a test image, shopping history or identity.
+Response modes: `ai`, `safety-rule`, `fallback`. Browser-only responses use `guide`. Recognised urgent, reactive-result and everyday-contact questions use the `safety-rule` path before model classification. The model does not receive a full conversation, a summary, a test image, shopping history or identity.
 
 ## Knowledge
 

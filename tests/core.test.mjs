@@ -30,6 +30,17 @@ test("reactive self-tests do not become diagnoses", () => {
   assert.equal(localTopic("My test is reactive"), "reactive");
   assert.match(answer("reactive").text, /not a confirmed/);
 });
+test("everyday contact questions return contact guidance before U=U", () => {
+  for (const q of [
+    "一起吃饭或拥抱会传染吗？",
+    "一起吃飯或擁抱會傳染嗎？",
+    "Can I get HIV from sharing a meal or hugging?",
+    "U=U 的人一起吃饭或握手会传染吗？",
+  ])
+    assert.equal(localTopic(q), "contact", q);
+  assert.match(answer("contact", "zh").text, /^不會。/);
+  assert.equal(answer("contact").source.id, "transmission");
+});
 test("U=U includes sustained treatment, sexual transmission, and follow-up", () => {
   assert.match(answer("uu").text, /maintain/);
   assert.match(answer("uu").text, /through sex/);
@@ -86,6 +97,25 @@ test("urgent rule bypasses model", async () => {
   );
   assert.equal((await r.json()).mode, "safety-rule");
   assert.equal(called, false);
+});
+test("casual contact rule bypasses a wrong U=U model label", async () => {
+  let called = false;
+  const r = await worker.fetch(
+    request({ message: "一起吃饭或拥抱会传染吗？", lang: "zh", aiConsent: true }),
+    {
+      AI: {
+        run() {
+          called = true;
+          return { response: "uu" };
+        },
+      },
+    },
+  );
+  const body = await r.json();
+  assert.equal(called, false);
+  assert.equal(body.mode, "safety-rule");
+  assert.equal(body.topic, "contact");
+  assert.equal(body.text, knowledge.contact.zh);
 });
 test("model outage has explicit fallback", async () => {
   const r = await worker.fetch(

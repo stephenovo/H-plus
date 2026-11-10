@@ -102,7 +102,7 @@ flowchart TD
     KB --> OUT["Answer + source + mode label"]
 ```
 
-If the model is unavailable, the UI explicitly labels the built-in fallback. Recognised priority questions bypass the model. Output is rendered as text, not model-generated HTML. These boundaries reduce the model’s role; they do **not** establish clinical validation or guarantee that every wording is correctly understood.
+If the model is unavailable, the UI explicitly labels the built-in fallback. Recognised urgent, reactive-result and everyday-contact questions bypass the model. Output is rendered as text, not model-generated HTML. These boundaries reduce the model’s role; they do **not** establish clinical validation or guarantee that every wording is correctly understood.
 
 ## Privacy by implementation
 

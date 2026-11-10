@@ -23,7 +23,7 @@ Use the public website with fictional questions. English is the default; select 
 No. The web prototype demonstrates the proposed conversational service. WhatsApp Business integration requires a configured account, provider policies and a reviewed implementation.
 
 **What exactly does AI do?**
-With consent, a live Workers AI model maps free text to a small topic vocabulary. The server validates the label and returns authored content. Urgent recognised cases use rules before the model. There is no model-generated diagnosis.
+With consent, a live Workers AI model maps free text to a small topic vocabulary. The server validates the label and returns authored content. Recognised urgent, reactive-result and everyday-contact cases use rules before the model. There is no model-generated diagnosis.
 
 **What if someone declines AI or questions?**
 Built-in guidance and service exploration remain available. Declining does not remove access to the demo.
