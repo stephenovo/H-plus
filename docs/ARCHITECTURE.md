@@ -1,6 +1,6 @@
-# FookHealth architecture
+# H+ architecture
 
-FookHealth is a React/TypeScript single-page application and a small Cloudflare Worker. The deployed application is stateless: no D1, KV, R2, authentication or participant store is configured.
+H+ is a React/TypeScript single-page application and a small Cloudflare Worker. The deployed application is stateless: no D1, KV, R2, authentication or participant store is configured.
 
 ## Surfaces
 
@@ -50,6 +50,9 @@ No probabilistic personal risk score is calculated. A new model label cannot cre
 The user can remove the testing preference and question field or add a fictional note. The confirmation button requires a valid selected service and affirmative review. No referral API exists; confirmation changes local UI state only. Export creates a local text file containing the visible summary. The official service link opens a separately governed website.
 
 ## Deployment and operations
+
+The separate `legacy-redirect/` Worker sends GET requests from the former demonstration URL to H+. It returns 410 for non-GET requests, so old API clients cannot silently submit questions to the new origin.
+
 
 - Frontend: Vite builds into `dist`.
 - Worker: `worker/index.mjs` handles `/api/*`; Cloudflare serves static assets.

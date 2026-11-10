@@ -1,10 +1,10 @@
 <div align="center">
-  <img src="public/brand.svg" width="82" alt="FookHealth leaf mark" />
-  <h1>FookHealth</h1>
+  <img src="public/brand.svg" width="82" alt="H+ leaf mark" />
+  <h1>H+</h1>
   <p><strong>A little support. A step forward.</strong></p>
-  <p>Community invitations · Private conversations · Informed choices</p>
+  <p>HIV plus one test · HIV plus Health · Private conversations</p>
   <p>
-    <a href="https://fookhealth.stephenovo.workers.dev"><strong>Explore the live demo ↗</strong></a>
+    <a href="https://h-plus.stephenovo.workers.dev"><strong>Explore the live demo ↗</strong></a>
     · <a href="README.zh-Hant.md">繁體中文</a>
     · <a href="docs/DEMO_GUIDE.md">90-second walkthrough</a>
     · <a href="docs/ARCHITECTURE.md">Architecture</a>
@@ -14,18 +14,20 @@
     <img src="https://img.shields.io/badge/React-19-149ECA?logo=react&logoColor=white" alt="React 19" />
     <img src="https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white" alt="TypeScript" />
     <img src="https://img.shields.io/badge/Cloudflare-Workers_AI-F38020?logo=cloudflare&logoColor=white" alt="Workers AI" />
-    <img src="https://img.shields.io/github/actions/workflow/status/stephenovo/FookHealth/ci.yml?label=checks" alt="Verification status" />
+    <img src="https://img.shields.io/github/actions/workflow/status/stephenovo/H+/ci.yml?label=checks" alt="Verification status" />
     <img src="https://img.shields.io/badge/license-MIT-7a965a" alt="MIT license" />
   </p>
 </div>
 
-<p align="center"><img src="docs/assets/hero.jpg" width="1100" alt="FookHealth live homepage with a friendly community health conversation" /></p>
+<p align="center"><img src="docs/assets/hero.jpg" width="1100" alt="H+ live homepage with a friendly community health conversation" /></p>
 
-## Why FookHealth
+## Why H+
+
+**H+ means HIV plus one test and HIV plus Health.** Ah Hong (阿康) carries the idea of health in a familiar Cantonese name.
 
 An everyday pharmacy visit can be an opportunity to learn about HIV testing—without a shopping profile, an individual risk label, or pressure to participate.
 
-FookHealth is an **independent educational prototype for HIV Hackathon 2026**. It explores how a familiar community invitation can lead to a private conversation, understandable testing options and a next step chosen by the user. The proposed pilot initially focuses on adults aged 50+ and first-time testers; this website demonstrates the experience, not measured clinical outcomes.
+H+ is an **independent educational prototype for HIV Hackathon 2026**. It explores how a familiar community invitation can lead to a private conversation, understandable testing options and a next step chosen by the user. The proposed pilot initially focuses on adults aged 50+ and first-time testers; this website demonstrates the experience, not measured clinical outcomes.
 
 > **Our question:** can a familiar community touchpoint help people who have never tested take an informed first step?
 
@@ -33,12 +35,12 @@ Hong Kong CHP reported that around half of newly reported cases were late presen
 
 ## Try it in 90 seconds
 
-1. Open the [live experience](https://fookhealth.stephenovo.workers.dev) and view the community invitation.
-2. Meet **Ah Fook**. Choose English or Traditional Chinese, larger text, and whether to enable AI.
+1. Open the [live experience](https://h-plus.stephenovo.workers.dev) and view the community invitation.
+2. Meet **Ah Hong**. Choose English or Traditional Chinese, larger text, and whether to enable AI.
 3. Ask “What is U=U?” or “Who sees my information?” Every answer identifies its source or explains this prototype’s own behaviour.
 4. Explore self-testing and provider-based testing. Questions can be skipped.
 5. Edit the sample summary, remove a field, and explicitly confirm the demo plan.
-6. Open [Pilot studio](https://fookhealth.stephenovo.workers.dev/#impact) to explore **clearly labelled synthetic scenarios**.
+6. Open [Pilot studio](https://h-plus.stephenovo.workers.dev/#impact) to explore **clearly labelled synthetic scenarios**.
 
 Use fictional questions only. No booking, kit dispatch or real referral occurs.
 
@@ -47,7 +49,7 @@ Use fictional questions only. No booking, kit dispatch or real referral occurs.
 ```mermaid
 flowchart LR
     A["Same community invitation\nfor adult customers"] --> B["Private preferences\nAI off by default"]
-    B --> C["Ask Ah Fook\nor skip questions"]
+    B --> C["Ask Ah Hong\nor skip questions"]
     C --> D["Understand testing options"]
     D --> E["Review and edit\na demo summary"]
     E --> F["Choose an official service\non its own website"]
@@ -59,7 +61,7 @@ flowchart LR
 | --- | --- |
 | **Community invitation** | Printable receipt-style invitation with a QR code to the live journey |
 | **Private preferences** | English / Traditional Chinese, larger text, optional AI, clear-session control |
-| **Ah Fook conversation** | Live Workers AI topic matching; fixed, source-linked answers; built-in guidance without AI |
+| **Ah Hong conversation** | Live Workers AI topic matching; fixed, source-linked answers; built-in guidance without AI |
 | **Priority guidance** | Deterministic routing for recognised recent-exposure and reactive-result questions |
 | **U=U education** | Accurate sexual-transmission scope; treatment and sustained viral-load follow-up conditions |
 | **Service choices** | Self-testing and provider-based options, official links, no artificial age-based restriction |
@@ -73,7 +75,7 @@ flowchart LR
 
 <details>
   <summary><strong>See the Traditional Chinese mobile experience</strong></summary>
-  <p align="center"><img src="docs/assets/mobile-zh.jpg" width="330" alt="Traditional Chinese mobile conversation with Ah Fook" /></p>
+  <p align="center"><img src="docs/assets/mobile-zh.jpg" width="330" alt="Traditional Chinese mobile conversation with Ah Hong" /></p>
 </details>
 
 <details>
@@ -119,8 +121,8 @@ See [privacy and pilot readiness](docs/PRIVACY_AND_SAFETY.md).
 Requirements: Node.js 22+, npm, and a modern browser.
 
 ```bash
-git clone https://github.com/stephenovo/FookHealth.git
-cd FookHealth
+git clone https://github.com/stephenovo/H-plus.git
+cd H+
 npm ci
 npm run dev
 ```
@@ -151,7 +153,7 @@ The deployed interface was also checked at **1440 px desktop and 390 px mobile**
 ## Repository map
 
 ```text
-FookHealth/
+H-plus/
 ├── src/
 │   ├── App.tsx               # Bilingual journey, homepage, studio and evidence
 │   ├── knowledge.mjs         # Authored answers, sources and browser rules
@@ -167,12 +169,15 @@ FookHealth/
 
 ## Deployment
 
+The earlier demo address redirects to this deployment. The `legacy-redirect/` Worker preserves links that were shared before the rename.
+
+
 ```bash
 npx wrangler login
 npm run deploy
 ```
 
-The configuration creates/updates the `fookhealth` Worker in the authenticated Cloudflare account. Choose a different Worker name if deploying a separate copy. It binds Workers AI and a **10 requests / 60 seconds per-IP** limiter. There is no database to migrate and no model secret in browser code. A same-origin check is not authentication; stronger abuse controls and budget monitoring are needed for a wider public launch.
+The configuration creates/updates the `h-plus` Worker in the authenticated Cloudflare account. Choose a different Worker name if deploying a separate copy. It binds Workers AI and a **10 requests / 60 seconds per-IP** limiter. There is no database to migrate and no model secret in browser code. A same-origin check is not authentication; stronger abuse controls and budget monitoring are needed for a wider public launch.
 
 ## Prototype scope and next steps
 

@@ -38,7 +38,7 @@ type Msg = {
   mode?: string;
   source?: { title: string; url: string } | null;
 };
-const repo = "https://github.com/stephenovo/FookHealth";
+const repo = "https://github.com/stephenovo/H-plus";
 const official = "https://www.hivtest.gov.hk/en/index.html";
 function Mascot({ small = false }: { small?: boolean }) {
   return (
@@ -53,7 +53,7 @@ function Brand() {
   return (
     <span className="brand">
       <img src="/brand.svg" alt="" />
-      FookHealth<span className="brand-dot">.</span>
+      H+
     </span>
   );
 }
@@ -218,7 +218,7 @@ function App() {
     setReading(true);
   }
   const summary = [
-    t("FOOKHEALTH — DEMONSTRATION PLAN", "FOOKHEALTH — 演示計劃"),
+    t("H+ — DEMONSTRATION PLAN", "H+ — 演示計劃"),
     t("No appointment or referral has been sent.", "沒有發送預約或轉介。"),
     ...(sharePreference
       ? [
@@ -246,13 +246,13 @@ function App() {
     );
     const a = document.createElement("a");
     a.href = url;
-    a.download = "FookHealth-demo-plan.txt";
+    a.download = "H-plus-demo-plan.txt";
     a.click();
     URL.revokeObjectURL(url);
   }
   const steps = [
     t("Your comfort", "你的選擇"),
-    t("Ask Ah Fook", "問問阿福"),
+    t("Ask Ah Hong", "問問阿康"),
     t("Explore options", "了解選項"),
     t("Your decision", "自主決定"),
   ];
@@ -273,7 +273,7 @@ function App() {
           <button
             className="brand-button"
             onClick={() => go("home")}
-            aria-label="FookHealth home"
+            aria-label="H+ home"
           >
             <Brand />
           </button>
@@ -288,7 +288,7 @@ function App() {
               className={page === "journey" ? "active" : ""}
               onClick={() => go("journey")}
             >
-              {t("Meet Ah Fook", "認識阿福")}
+              {t("Meet Ah Hong", "認識阿康")}
             </button>
             <button
               className={page === "impact" ? "active" : ""}
@@ -340,7 +340,10 @@ function App() {
               <div className="hero-copy">
                 <div className="eyebrow">
                   <span />{" "}
-                  {t("EVERYDAY CARE. YOUR CHOICE.", "日常關懷・自主選擇")}
+                  {t(
+                    "HIV + ONE TEST · HIV + HEALTH",
+                    "HIV 多一次檢測・多一份健康",
+                  )}
                 </div>
                 <h1>
                   {t("A little support.", "多一點支持，")}
@@ -350,12 +353,12 @@ function App() {
                 <p className="hero-description">
                   {t(
                     "Good health starts with a conversation. Explore HIV testing at your own pace, with a friendly guide and choices that stay yours.",
-                    "健康，由一次安心對話開始。跟阿福慢慢了解 HIV 檢測，每一步，都由你選擇。",
+                    "健康，由一次安心對話開始。跟阿康慢慢了解 HIV 檢測，每一步，都由你選擇。",
                   )}
                 </p>
                 <div className="hero-actions">
                   <button className="button primary" onClick={start}>
-                    {t("Have a chat with Ah Fook", "與阿福聊聊")}
+                    {t("Have a chat with Ah Hong", "與阿康聊聊")}
                     <ArrowUpRight size={20} />
                   </button>
                   <button
@@ -392,7 +395,7 @@ function App() {
                   <div className="phone-head">
                     <Mascot small />
                     <div>
-                      <strong>{t("Ah Fook", "街坊阿福")}</strong>
+                      <strong>{t("Ah Hong", "街坊阿康")}</strong>
                       <small>
                         {t("Your community health guide", "你的社區健康嚮導")}
                       </small>
@@ -405,8 +408,8 @@ function App() {
                     </div>
                     <div className="mock-bubble">
                       {t(
-                        "Hello, I’m Ah Fook 👋 What would help you feel more comfortable today?",
-                        "你好，我係阿福 👋 今日有咩想慢慢了解？",
+                        "Hello, I’m Ah Hong 👋 What would help you feel more comfortable today?",
+                        "你好，我係阿康 👋 今日有咩想慢慢了解？",
                       )}
                     </div>
                     <div className="mock-bubble user">
@@ -497,8 +500,8 @@ function App() {
                     <MessageCircle />,
                     t("A conversation, on your terms", "按你的意願，開始對話"),
                     t(
-                      "Ask questions, skip what feels personal, and understand your choices with Ah Fook.",
-                      "問你想知的，跳過不想答的，跟阿福了解自己的選項。",
+                      "Ask questions, skip what feels personal, and understand your choices with Ah Hong.",
+                      "問你想知的，跳過不想答的，跟阿康了解自己的選項。",
                     ),
                   ],
                   [
@@ -553,7 +556,7 @@ function App() {
                     go("journey");
                   }}
                 >
-                  {t("Understand U=U with Ah Fook", "與阿福了解 U=U")}
+                  {t("Understand U=U with Ah Hong", "與阿康了解 U=U")}
                   <ArrowRight size={17} />
                 </button>
               </div>
@@ -593,7 +596,7 @@ function App() {
               <aside className="journey-sidebar">
                 <div className="guide-profile">
                   <Mascot />
-                  <h3>{t("Hello, I’m Ah Fook.", "你好，我係阿福。")}</h3>
+                  <h3>{t("Hello, I’m Ah Hong.", "你好，我係阿康。")}</h3>
                   <p>
                     {t(
                       "I’m here to help you understand your choices. You can skip questions or leave whenever you like.",
@@ -720,7 +723,7 @@ function App() {
                       className="button primary full"
                       onClick={() => next(1)}
                     >
-                      {t("Continue to Ah Fook", "開始與阿福對話")}
+                      {t("Continue to Ah Hong", "開始與阿康對話")}
                       <ArrowRight size={18} />
                     </button>
                   </>
@@ -800,8 +803,8 @@ function App() {
                       {busy && (
                         <div className="thinking">
                           {t(
-                            "Ah Fook is finding the right information…",
-                            "阿福正尋找相關資訊……",
+                            "Ah Hong is finding the right information…",
+                            "阿康正尋找相關資訊……",
                           )}
                         </div>
                       )}
@@ -1371,8 +1374,8 @@ function App() {
             </h1>
             <p className="intro-text">
               {t(
-                "FookHealth explores a simple question: can an everyday community invitation help someone take an informed first step towards HIV testing?",
-                "FookHealth 探索一個簡單問題：日常社區邀請，能否幫助一個人知情地踏出 HIV 檢測的第一步？",
+                "H+ explores a simple question: can an everyday community invitation help someone take an informed first step towards HIV testing?",
+                "H+ 探索一個簡單問題：日常社區邀請，能否幫助一個人知情地踏出 HIV 檢測的第一步？",
               )}
             </p>
             <div className="evidence-grid">
@@ -1604,7 +1607,7 @@ function App() {
                     <img
                       className="qr"
                       src={qr}
-                      alt="QR code to the FookHealth demo journey"
+                      alt="QR code to the H+ demo journey"
                     />
                   )}
                   <p className="receipt-url">{location.host}/#journey</p>

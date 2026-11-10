@@ -1,8 +1,8 @@
 # Links for the mini-challenge paper
 
-**Interactive prototype:** https://fookhealth.stephenovo.workers.dev
+**Interactive prototype:** https://h-plus.stephenovo.workers.dev
 
-**Source code and implementation notes:** https://github.com/stephenovo/FookHealth
+**Source code and implementation notes:** https://github.com/stephenovo/H-plus
 
 Suggested sentence for Actionable Plan:
 
@@ -10,6 +10,6 @@ Suggested sentence for Actionable Plan:
 
 Compact link line:
 
-> Interactive prototype: [Demo](https://fookhealth.stephenovo.workers.dev) · Implementation: [GitHub](https://github.com/stephenovo/FookHealth). Uses fictional data and simulated referrals.
+> Interactive prototype: [Demo](https://h-plus.stephenovo.workers.dev) · Implementation: [GitHub](https://github.com/stephenovo/H-plus). Uses fictional data and simulated referrals.
 
 Do not describe the prototype as a deployed WhatsApp service, completed clinical pilot, confirmed partnership or validated diagnostic tool. The one-page concept paper should remain understandable without opening either link.
