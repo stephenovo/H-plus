@@ -609,6 +609,11 @@ function App() {
                     )}
                   </p>
                 </div>
+                <div className="mobile-progress" aria-live="polite">
+                  <span>{t(`Step ${Math.min(step + 1, 4)} of 4`, `第 ${Math.min(step + 1, 4)} 步，共 4 步`)}</span>
+                  <strong>{steps[Math.min(step, 3)]}</strong>
+                  <progress max={4} value={Math.min(step + 1, 4)} aria-label={t("Journey progress", "流程進度")} />
+                </div>
                 <ol className="steps">
                   {steps.map((s, i) => (
                     <li
@@ -1524,6 +1529,11 @@ function App() {
           </section>
         )}
       </main>
+      <nav className="mobile-dock" aria-label={t("Quick navigation", "快捷導覽")}>
+        <button aria-current={page === "home" ? "page" : undefined} onClick={() => go("home")}><Leaf size={20}/>{t("Home", "首頁")}</button>
+        <button aria-current={page === "journey" && step === 2 ? "page" : undefined} onClick={() => { next(2); go("journey"); }}><MapPin size={20}/>{t("Testing options", "檢測選項")}</button>
+        <button aria-current={page === "journey" && step === 1 ? "page" : undefined} onClick={() => { next(1); go("journey"); }}><MessageCircle size={20}/>{t("Ask UU", "問悠悠")}</button>
+      </nav>
       <footer className="shell">
         <div>
           <Brand />
