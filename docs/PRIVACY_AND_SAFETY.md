@@ -45,3 +45,8 @@ These measures are not a complete security or clinical assurance case. Same-orig
 8. Review institutional/ethics requirements before participant recruitment and evaluation.
 
 The repository does not contain a partner commitment, ethics approval or claim of clinical effectiveness.
+
+
+## Final-round update — 15 November 2026
+
+Invite → Explore → Choose → Connect. Home offers direct testing options or optional UU conversation. Each testing option has its own official service destination and external privacy notice; the editable demo plan is optional. Mixed-intent safety rules run before casual-contact answers. No booking or referral is sent. Provider information uses the official ACTS page; online service availability must be confirmed directly. Verification: 19 automated tests and production build pass. The 50+ rationale cites the November 2024 CHP recommendations, page 3; it concerns late presentation, not individual infection risk.

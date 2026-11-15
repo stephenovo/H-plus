@@ -54,7 +54,7 @@ export default {
         );
     }
     const rule = localTopic(body.message);
-    if (["urgent", "reactive", "contact"].includes(rule))
+    if (["urgent", "reactive", "contact", "testing"].includes(rule))
       return json(answer(rule, body.lang, "safety-rule"));
     if (["greeting", "thanks", "identity", "weather"].includes(rule))
       return json(answer(rule, body.lang, "smalltalk"));

@@ -4,7 +4,7 @@ Checked on 10 November 2026 (Hong Kong time).
 
 ## Automated checks
 
-`npm test`: 18 passing Node tests.
+`npm test`: 19 passing Node tests.
 
 - English/Chinese priority routing precedes ordinary kit guidance.
 - Reactive self-test guidance distinguishes screening from diagnosis.
@@ -44,3 +44,8 @@ The live/local interfaces were inspected using the browser at 1440 px desktop an
 | Modal | Close and Escape dismissal checked |
 
 Screenshots are in `docs/assets`. The downloadable plan and print controls are implemented, but OS print output and every browser/voice configuration have not been independently verified. No clinical effectiveness study, penetration test, full accessibility audit or real partner integration has been completed.
+
+
+## Final-round update — 15 November 2026
+
+Invite → Explore → Choose → Connect. Home offers direct testing options or optional UU conversation. Each testing option has its own official service destination and external privacy notice; the editable demo plan is optional. Mixed-intent safety rules run before casual-contact answers. No booking or referral is sent. Provider information uses the official ACTS page; online service availability must be confirmed directly. Verification: 19 automated tests and production build pass. The 50+ rationale cites the November 2024 CHP recommendations, page 3; it concerns late presentation, not individual infection risk.

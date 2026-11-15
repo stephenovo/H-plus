@@ -39,7 +39,7 @@ type Msg = {
   source?: { title: string; url: string } | null;
 };
 const repo = "https://github.com/stephenovo/H-plus";
-const official = "https://www.hivtest.gov.hk/en/index.html";
+const official = "https://www.aids.gov.hk/english/hotline/acts.html";
 function Mascot({ small = false }: { small?: boolean }) {
   return (
     <span className={`mascot ${small ? "small" : ""}`} aria-hidden="true">
@@ -170,6 +170,8 @@ function App() {
     clearSession();
     go("journey");
   }
+  function explore() { clearSession(); setStep(2); go("journey"); }
+  const serviceUrl = choice === "self" ? sources[2].url : official;
   function next(n: number) {
     setStep(n);
     setError("");
@@ -266,7 +268,7 @@ function App() {
           document.getElementById("main")?.focus();
         }}
       >
-        Skip to content
+        {t("Skip to content", "跳至內容")}
       </a>
       <header>
         <div className="nav-shell">
@@ -278,6 +280,7 @@ function App() {
             <Brand />
           </button>
           <nav className={menu ? "open" : ""}>
+            <button onClick={explore}>{t("Explore testing", "檢測選項")}</button>
             <button
               className={page === "home" ? "active" : ""}
               onClick={() => go("home")}
@@ -294,7 +297,7 @@ function App() {
               className={page === "impact" ? "active" : ""}
               onClick={() => go("impact")}
             >
-              {t("Pilot studio", "試點工作室")}
+              {t("For reviewers: pilot", "評委：試點")}
             </button>
             <button
               className={page === "evidence" ? "active" : ""}
@@ -318,7 +321,7 @@ function App() {
             <button
               className="icon-button"
               onClick={() => setLarge(!large)}
-              aria-label="Toggle larger text"
+              aria-label={t("Toggle larger text", "切換放大字體")}
               aria-pressed={large}
             >
               <Accessibility size={20} />
@@ -326,7 +329,7 @@ function App() {
             <button
               className="menu-button icon-button"
               onClick={() => setMenu(!menu)}
-              aria-label="Toggle navigation"
+              aria-label={t("Toggle navigation", "開啟導覽")}
             >
               <Menu />
             </button>
@@ -357,8 +360,9 @@ function App() {
                   )}
                 </p>
                 <div className="hero-actions">
+                  <button className="button primary" onClick={explore}>{t("Explore testing options", "直接了解檢測選項")}<ArrowRight size={18}/></button>
                   <button className="button primary" onClick={start}>
-                    {t("Explore with UU", "與悠悠了解選項")}
+                    {t("Ask UU", "問問悠悠")}
                     <ArrowUpRight size={20} />
                   </button>
                   <button
@@ -490,7 +494,7 @@ function App() {
                 {[
                   [
                     <MapPin />,
-                    t("An everyday invitation", "日常的一張邀請"),
+                    t("1. Invite", "1. 邀請"),
                     t(
                       "The same QR invitation for adult customers. No shopping profiles or risk labels.",
                       "成年顧客收到相同邀請，不分析購物記錄，不貼風險標籤。",
@@ -498,7 +502,7 @@ function App() {
                   ],
                   [
                     <MessageCircle />,
-                    t("A conversation, on your terms", "按你的意願，開始對話"),
+                    t("2. Explore", "2. 了解"),
                     t(
                       "Ask UU what this invitation means, or go straight to the testing options. No personal history is required.",
                       "可以問悠悠呢張邀請有咩意思，亦可以直接睇檢測選項，毋須交代個人經歷。",
@@ -506,12 +510,13 @@ function App() {
                   ],
                   [
                     <Heart />,
-                    t("A next step you choose", "自主選擇下一步"),
+                    t("3. Choose", "3. 選擇"),
                     t(
                       "Compare self-testing with professional support, then review a sample next step before you decide.",
                       "比較自測與專業支援，再看看下一步的模擬安排，由你決定。",
                     ),
                   ],
+                  [<ArrowUpRight />, t("4. Connect", "4. 連接"), t("Open official service information. Human referrals through partners are a proposed next phase.", "前往官方服務資訊。合作機構人工轉介屬下一階段計劃。")],
                 ].map(([icon, title, body], i) => (
                   <article className="path-card" key={i}>
                     <div className="card-top">
@@ -856,7 +861,7 @@ function App() {
                       />
                       <button
                         disabled={busy || !input.trim()}
-                        aria-label="Send question"
+                        aria-label={t("Send question", "傳送問題")}
                       >
                         <Send size={19} />
                       </button>
@@ -987,6 +992,13 @@ function App() {
                         </button>
                       ))}
                     </div>
+                    <article className="next-step-card">
+                      <span className="step-label">{t("YOUR PRACTICAL NEXT STEP", "下一步點做")}</span>
+                      <h3>{choice === "self" ? t("Explore self-testing", "了解自我檢測") : t("Speak with a testing service", "聯絡檢測服務")}</h3>
+                      <p>{choice === "self" ? t("Read the ordering requirements, payment hold and result-upload terms before ordering. A recent infection may not be detected during the window period; a reactive result needs confirmation.", "訂購前先閱讀申請要求、預授權及結果上傳條款。空窗期可能未能檢出近期感染；有反應結果須確認檢測。") : t("Check the official ACTS page for booking arrangements and confidential support from trained staff. Prepare any questions you want to ask; availability is confirmed by the service.", "查看官方 ACTS 網頁的預約安排及受訓人員保密支援。可先準備想問的問題；服務安排由機構確認。")}</p>
+                      <a className="button primary full" href={serviceUrl} target="_blank" rel="noreferrer">{choice === "self" ? t("Read official self-test requirements", "查看官方自測要求") : t("View official testing & booking information", "查看官方檢測及預約資訊")}<ExternalLink size={18}/></a>
+                      <p className="micro">{t("You are leaving H+. The external service has its own privacy and registration requirements. H+ has not booked a test or sent your chat. Check current availability directly; online services may change.", "即將離開 H+。外部服務有自己的私隱及登記要求。H+ 未代你預約或傳送對話。網上服務或有變動，請直接確認最新安排。")}</p>
+                    </article>
                     <a
                       className="source-link"
                       href={choice === "self" ? sources[2].url : official}
@@ -1004,7 +1016,7 @@ function App() {
                       disabled={!choice}
                       onClick={() => next(3)}
                     >
-                      {t("Review my next step", "查看下一步")}
+                      {t("Optional: preview a demo plan", "自選：預覽模擬計劃")}
                       <ArrowRight size={18} />
                     </button>
                     <button className="skip-step" onClick={leave}>
@@ -1135,7 +1147,7 @@ function App() {
                     </div>
                     <a
                       className="button primary full"
-                      href={official}
+                      href={serviceUrl}
                       target="_blank"
                       rel="noreferrer"
                     >
@@ -1263,8 +1275,8 @@ function App() {
                 </div>
                 <p className="muted">
                   {t(
-                    "Illustrative service funnel · counts, not risk scores",
-                    "示範服務流程・人次，不是風險分數",
+                    "SYNTHETIC · NOT ACTUAL RESULTS · all bars use 2,000 invitations",
+                    "合成示範・非真實成果・所有柱形以 2,000 次邀請為分母",
                   )}
                 </p>
                 {[
@@ -1281,7 +1293,7 @@ function App() {
                     <div className="bar-track">
                       <span
                         style={{
-                          width: `${Math.max(8, (Number(n) / 2000) * 100)}%`,
+                          width: `${(Number(n) / 2000) * 100}%`,
                           opacity: 1 - i * 0.14,
                         }}
                       />
@@ -1290,8 +1302,8 @@ function App() {
                 ))}
                 <p className="micro">
                   {t(
-                    "A future pilot needs consented follow-up to verify completion; a click is not a test.",
-                    "未來試點須經同意跟進，才能核實完成檢測；點擊不等於檢測。",
+                    "Future measurement: consented, deduplicated provider contact and completed first-ever tests. Aggregate results and protect small groups. Clicks do not verify testing.",
+                    "未來評估須經同意、去重，核實機構聯絡及首次完成檢測；資料須匯總並保護小樣本。點擊不能證明完成檢測。",
                   )}
                 </p>
               </article>
@@ -1446,14 +1458,19 @@ function App() {
                 </ul>
               </article>
             </div>
+            <article className="panel">
+              <h3>{t("Why a 50+ pilot focus?", "為何試點關注 50 歲或以上人士？")}</h3>
+              <p>{t("The 2024 Hong Kong testing recommendations report late presentation in 47.0% of newly reported cases with known CD4 counts in 2023 (CD4 below 200 cells/mm³ at diagnosis). Late presenters were more likely to be aged 50 or above. This supports exploring access barriers in an older population; it does not establish that age alone predicts infection. H+ keeps service information open to all adults.", "香港 2024 年檢測建議指出：2023 年已知 CD4 數值的新呈報個案中，47.0% 屬晚期呈報（確診時 CD4 低於 200 cells/mm³）；晚期呈報者較可能為 50 歲或以上。這支持研究長者的檢測障礙，並非以年齡推斷感染。H+ 服務資訊向所有成年人開放。")}</p>
+              <a href={sources[1].url} target="_blank" rel="noreferrer">{t("CHP recommendations · November 2024 · page 3", "衞生防護中心建議・2024 年 11 月・第 3 頁")}</a>
+            </article>
             <div className="architecture">
-              <span>Community invitation</span>
+              <span>{t("Invite", "邀請")}</span>
               <ArrowRight />
-              <span>Private choices</span>
+              <span>{t("Explore", "了解")}</span>
               <ArrowRight />
-              <span>Rules + bounded AI</span>
+              <span>{t("Choose", "選擇")}</span>
               <ArrowRight />
-              <span>Informed next step</span>
+              <span>{t("Connect", "連接")}</span>
             </div>
             <div className="section-head">
               <div>
@@ -1470,7 +1487,7 @@ function App() {
               </p>
             </div>
             <div className="sources">
-              {sources.map((s, i) => (
+              {sources.filter(s => s.id !== "weather").map((s, i) => (
                 <a key={s.id} href={s.url} target="_blank" rel="noreferrer">
                   <span>0{i + 1}</span>
                   <strong>{s.title}</strong>
@@ -1542,7 +1559,7 @@ function App() {
             <button
               className="modal-close icon-button"
               onClick={() => setModal(null)}
-              aria-label="Close dialog"
+              aria-label={t("Close dialog", "關閉視窗")}
             >
               <X />
             </button>

@@ -99,19 +99,11 @@ export const knowledge = {
 };
 export function localTopic(input) {
   const t = input.toLowerCase();
-  if (
-    /hug|hugg|sharing (?:a )?meal|share (?:a )?meal|sharing food|eat(?:ing)? together|shake hands|handshake|casual contact|擁抱|拥抱|抱抱|吃飯|吃饭|共餐|聚餐|一起吃|同桌|握手|日常接觸|日常接触/.test(
-      t,
-    )
-  )
-    return "contact";
-  if (
-    /\bpep\b|expos|72|yesterday|last night|unprotected|condom.*broke|needle|昨[天晚日]|暴露|接觸.*hiv|無套|破[裂了]|針刺/.test(
-      t,
-    )
-  )
-    return "urgent";
-  if (/reactive|positive|陽性|阳性|有反應|有反应/.test(t)) return "reactive";
+  const unnegated = t.replace(/\b(?:not|never|no)\s+(?:tested\s+)?(?:positive|reactive|exposed)\b|non[- ]?reactive|不是陽性|不是阳性|沒有反應|冇反應|没有反应/g, "");
+  if (/\bpep\b|expos|unprotected|condom.*broke|needle|暴露|無套|无套|針刺|针刺/.test(unnegated)) return "urgent";
+  if (/reactive|posit[i]?ve|陽性|阳性|有反應|有反应/.test(unnegated)) return "reactive";
+  if (/not positive|non[- ]?reactive|window period|空窗|不是陽性|不是阳性|沒有反應|冇反應|没有反应/.test(t)) return "testing";
+  if (/hug|meal|sharing food|eating together|shake hands|casual contact|擁抱|拥抱|吃飯|吃饭|食飯|共餐|握手|日常接觸|日常接触/.test(t)) return "contact";
   if (/u\s*=\s*u|undetect|viral load|測不到|测不到|病毒載量/.test(t))
     return "uu";
   if (

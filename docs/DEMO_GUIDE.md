@@ -48,3 +48,8 @@ Keep AI off and use the built-in prompts. The same service journey remains funct
 - Avoid making promises about free kits, appointments or partner capacity.
 - State that referrals and dashboard data are simulated.
 - Clear the session at the end.
+
+
+## Final-round update — 15 November 2026
+
+Invite → Explore → Choose → Connect. Home offers direct testing options or optional UU conversation. Each testing option has its own official service destination and external privacy notice; the editable demo plan is optional. Mixed-intent safety rules run before casual-contact answers. No booking or referral is sent. Provider information uses the official ACTS page; online service availability must be confirmed directly. Verification: 19 automated tests and production build pass. The 50+ rationale cites the November 2024 CHP recommendations, page 3; it concerns late presentation, not individual infection risk.

@@ -63,3 +63,8 @@ The separate `legacy-redirect/` Worker sends GET requests from the former demons
 - The public AI endpoint should receive stronger bot controls, usage monitoring and a reviewed budget before a broader launch.
 
 To update: run `npm run check`, then `npm run deploy`. Verify `/api/health` and one fictional AI question. Review previous versions with `npx wrangler deployments list`; rollback procedures are provided by Wrangler and should be used only for the intended Worker/account.
+
+
+## Final-round update — 15 November 2026
+
+Invite → Explore → Choose → Connect. Home offers direct testing options or optional UU conversation. Each testing option has its own official service destination and external privacy notice; the editable demo plan is optional. Mixed-intent safety rules run before casual-contact answers. No booking or referral is sent. Provider information uses the official ACTS page; online service availability must be confirmed directly. Verification: 19 automated tests and production build pass. The 50+ rationale cites the November 2024 CHP recommendations, page 3; it concerns late presentation, not individual infection risk.

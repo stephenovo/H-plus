@@ -206,3 +206,19 @@ test("rate limit rejects before inference", async () => {
     429,
   );
 });
+
+test('mixed intents preserve priority and handle negative results', async () => {
+ const cases = [
+ ['I shared a meal with someone and my HIV self-test was positive.', 'reactive'],
+ ['I hugged someone. I may have been exposed to HIV last night.', 'urgent'],
+ ['一起食飯會傳染嗎？我自測有反應。', 'reactive'],
+ ['I shared a meal with a friend.', 'contact'],
+ ['My test was not positive; what does window period mean?', 'testing'],
+ ['我自測冇反應，空窗期係咩？', 'testing']
+ ];
+ for (const [message, topic] of cases) {
+  assert.equal(localTopic(message), topic);
+  const response = await worker.fetch(request({message, aiConsent:true}), env);
+  assert.equal((await response.json()).topic,topic);
+ }
+});

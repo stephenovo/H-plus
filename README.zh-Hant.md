@@ -90,3 +90,8 @@ npm run deploy  # 發佈至已登入的 Cloudflare 帳戶
 與社區成員、臨床顧問和服務機構共同審閱內容，確認服務與費用，再進行小規模可用性測試。真實試點須另外處理同意、資料治理、機構容量與成果核實。
 
 程式採用 [MIT License](LICENSE)。
+
+
+## Final-round update — 15 November 2026
+
+Invite → Explore → Choose → Connect. Home offers direct testing options or optional UU conversation. Each testing option has its own official service destination and external privacy notice; the editable demo plan is optional. Mixed-intent safety rules run before casual-contact answers. No booking or referral is sent. Provider information uses the official ACTS page; online service availability must be confirmed directly. Verification: 19 automated tests and production build pass. The 50+ rationale cites the November 2024 CHP recommendations, page 3; it concerns late presentation, not individual infection risk.
