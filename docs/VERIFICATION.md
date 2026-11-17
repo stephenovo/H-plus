@@ -4,7 +4,7 @@ Checked on 10 November 2026 (Hong Kong time).
 
 ## Automated checks
 
-`npm test`: 19 passing Node tests.
+`npm test`: 20 passing Node tests.
 
 - English/Chinese priority routing precedes ordinary kit guidance.
 - Reactive self-test guidance distinguishes screening from diagnosis.
@@ -48,4 +48,6 @@ Screenshots are in `docs/assets`. The downloadable plan and print controls are i
 
 ## Final-round update — 15 November 2026
 
-Invite → Explore → Choose → Connect. Home offers direct testing options or optional UU conversation. Each testing option has its own official service destination and external privacy notice; the editable demo plan is optional. Mixed-intent safety rules run before casual-contact answers. No booking or referral is sent. Provider information uses the official ACTS page; online service availability must be confirmed directly. Verification: 19 automated tests and production build pass. The 50+ rationale cites the November 2024 CHP recommendations, page 3; it concerns late presentation, not individual infection risk.
+Invite → Explore → Choose → Connect. Home offers direct testing options or optional UU conversation. Each testing option has its own official service destination and external privacy notice; the editable demo plan is optional. Mixed-intent safety rules run before casual-contact answers. No booking or referral is sent. Provider information uses the official ACTS page; online service availability must be confirmed directly. Verification: 20 automated tests and production build pass. The 50+ rationale cites the November 2024 CHP recommendations, page 3; it concerns late presentation, not individual infection risk.
+
+Rebecca integration: 390px and 1440px browser checks passed for Ask UU → location prompt → testing options. No horizontal overflow on this path.
