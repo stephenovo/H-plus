@@ -2144,3 +2144,35 @@ header nav button.active:after { left:0; right:0; bottom:5px; width:auto; height
 .large .message-content,.large .consent-box span span,.large .option span span:not(.radio-dot) { font-size:20px; line-height:1.75; }
 .large button,.large .button { min-height:48px; }
 @media(max-width:600px) { .chat-log { height:auto; min-height:160px; max-height:45dvh; } .floating-label { right:10px; } }
+
+/* Keep the switch track compact inside an accessible touch target. */
+.app .switch {
+  position:relative;
+  width:48px;
+  height:48px;
+  min-height:48px;
+  padding:0;
+  background:transparent;
+  border-radius:12px;
+}
+.app .switch::before {
+  content:"";
+  position:absolute;
+  width:44px;
+  height:26px;
+  left:2px;
+  top:11px;
+  border-radius:999px;
+  background:#c6cebd;
+  transition:background .15s;
+}
+.app .switch.on::before { background:var(--green); }
+.app .switch span {
+  position:absolute;
+  top:14px;
+  left:5px;
+  width:20px;
+  height:20px;
+  margin:0;
+}
+.app .switch.on span { transform:translateX(18px); }
