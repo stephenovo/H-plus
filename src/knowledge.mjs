@@ -1,4 +1,5 @@
 export const sources = [
+
   {
     id: "chp",
     title: "Hong Kong CHP · HIV testing & U=U",
@@ -29,6 +30,7 @@ export const sources = [
     title: "Hong Kong Observatory · Weather",
     url: "https://www.hko.gov.hk/en/index.html",
   },
+  { id: "acts", title: "Department of Health · ACTS", url: "https://www.aids.gov.hk/english/hotline/acts.html" },
 ];
 export const knowledge = {
   testing: {
@@ -91,6 +93,11 @@ export const knowledge = {
     zh: "我冇即時天氣資料，所以唔會估今日嘅天氣。香港嘅最新預報可以睇天文台；如果你有健康方面嘅問題，亦可以喺度問我。",
     source: "weather",
   },
+  location: {
+    en: "You can explore provider-based testing through the Department of Health’s ACTS service or review official self-testing information. Open the testing options below, choose a service and check its current arrangements before visiting or ordering. H+ has not booked a test or sent your conversation.",
+    zh: "你可以透過衞生署 ACTS 了解由工作人員支援的檢測，或查看官方自測資訊。開啟下面的檢測選項，選擇服務，再確認最新到訪或訂購安排。H+ 未代你預約或傳送對話。",
+    source: "acts",
+  },
   unknown: {
     en: "I’m not sure I can answer that accurately. I can help with HIV testing choices, privacy, U=U and finding professional support. For a personal result, symptoms or medication, please ask a healthcare professional.",
     zh: "呢題我未必可以準確回答。我可以幫你了解 HIV 檢測選擇、私隱、U=U，同埋點樣尋找專業支援。個人檢測結果、症狀或用藥問題，請向醫護查詢。",
@@ -114,6 +121,7 @@ export function localTopic(input) {
     return "privacy";
   if (/kit|cost|free|price|130|自測|自测|費用|费用|免費|免费/.test(t))
     return "kit";
+  if (/where.*test|test.*near|testing.*location|邊度.*檢測|哪里.*检测|檢測.*地點|檢測.*附近/.test(t)) return "location";
   if (/clinic|appoint|provider|診所|诊所|預約|预约|服務點/.test(t))
     return "clinic";
   if (/test|檢測|检测|篩查|筛查/.test(t)) return "testing";

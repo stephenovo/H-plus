@@ -36,6 +36,7 @@ type Msg = {
   role: "user" | "assistant";
   text: string;
   mode?: string;
+  topic?: string;
   source?: { title: string; url: string } | null;
 };
 const repo = "https://github.com/stephenovo/H-plus";
@@ -43,9 +44,31 @@ const official = "https://www.aids.gov.hk/english/hotline/acts.html";
 function Mascot({ small = false }: { small?: boolean }) {
   return (
     <span className={`mascot ${small ? "small" : ""}`} aria-hidden="true">
-      <span className="tuft">✦</span>
-      <span className="eyes">● ●</span>
-      <span className="smile">⌣</span>
+      <svg
+        viewBox="0 0 48 48"
+        width="100%"
+        height="100%"
+        fill="none"
+        aria-hidden="true"
+      >
+        {/* sprout tuft */}
+        <path
+          d="M32 10c-1.5 3.2-3 5.4-5.6 6.8M32 10c-0.4 3.4-2.2 5.6-5.6 6.8"
+          stroke="#5c8251"
+          strokeWidth="2.2"
+          strokeLinecap="round"
+        />
+        {/* eyes */}
+        <circle cx="18" cy="24" r="2.6" fill="#294d35" />
+        <circle cx="30" cy="24" r="2.6" fill="#294d35" />
+        {/* smile */}
+        <path
+          d="M18 31c2.6 2.4 9.4 2.4 12 0"
+          stroke="#294d35"
+          strokeWidth="2.2"
+          strokeLinecap="round"
+        />
+      </svg>
     </span>
   );
 }
@@ -73,6 +96,7 @@ function App() {
   const [sharePreference, setSharePreference] = useState(true);
   const [note, setNote] = useState("");
   const [messages, setMessages] = useState<Msg[]>([]);
+  const [askedChips, setAskedChips] = useState<string[]>([]);
   const [input, setInput] = useState("");
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
@@ -156,6 +180,7 @@ function App() {
     setShareTopics(true);
     setSharePreference(true);
     setMessages([]);
+    setAskedChips([]);
     setInput("");
     setBusy(false);
     setError("");
@@ -750,7 +775,7 @@ function App() {
                       <span className="status-badge">
                         <span />
                         {ai
-                          ? t("AI enabled", "AI 已啟用")
+                          ? t("AI on · optional", "AI 已開・自選")
                           : t("Built-in guide", "內置指引")}
                       </span>
                     </div>
@@ -787,6 +812,7 @@ function App() {
                                 <ExternalLink size={11} />
                               </a>
                             )}
+                            {m.topic === "location" && <button className="button secondary" onClick={() => { next(2); go("journey"); }}>{t("Find testing services", "查看檢測服務")}<ArrowRight size={16}/></button>}
                             {m.mode && (
                               <small className="answer-mode">
                                 {m.mode === "ai"
@@ -835,18 +861,20 @@ function App() {
                           "Where do I start with testing?",
                           "第一次檢測，點開始？",
                         ],
+                        ["Where can I get tested?", "邊度有得檢測？"],
                         ["What is U=U?", "甚麼是 U=U？"],
                         ["Who sees my information?", "誰會看到我的私隱資料？"],
-                      ].map(([en, zh]) => (
+                      ].filter(([en, zh]) => !askedChips.includes(en) && !messages.some(m => m.role === "user" && (m.text === en || m.text === zh))).map(([en, zh]) => (
                         <button
                           disabled={busy}
                           key={en}
-                          onClick={() => ask(t(en, zh))}
+                          onClick={() => { setAskedChips(c => [...c, en]); ask(t(en, zh)); }}
                         >
                           {t(en, zh)}
                         </button>
                       ))}
                     </div>
+                    <p className="micro">{t("Demo: use fictional examples and avoid names, contact details or personal results.", "演示：請使用虛構例子，勿輸入姓名、聯絡資料或個人檢測結果。")}</p>
                     <form
                       className="chat-form"
                       onSubmit={(e) => {
@@ -857,8 +885,8 @@ function App() {
                       <input
                         aria-label={t("Your question", "你的問題")}
                         placeholder={t(
-                          "Type a fictional question…",
-                          "輸入虛構問題……",
+                          "Ask UU about testing…",
+                          "問悠悠關於檢測嘅問題……",
                         )}
                         value={input}
                         maxLength={800}

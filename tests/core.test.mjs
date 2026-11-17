@@ -222,3 +222,14 @@ test('mixed intents preserve priority and handle negative results', async () => 
   assert.equal((await response.json()).topic,topic);
  }
 });
+
+test('location navigation keeps safety routing and source links', async () => {
+ for (const message of ['Where can I get tested?', '邊度有得檢測？']) {
+  assert.equal(localTopic(message), 'location');
+  const r = await worker.fetch(request({message,aiConsent:true}), env);
+  const body = await r.json();
+  assert.equal(body.topic,'location');
+  assert.match(body.source.url,/acts\.html$/);
+ }
+ assert.equal(localTopic('Where can I get tested? My test was positive.'),'reactive');
+});
