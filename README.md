@@ -111,7 +111,7 @@ If the model is unavailable, the UI explicitly labels the built-in fallback. Rec
 - AI is optional and off by default. When enabled, the current question—not the entire chat—is sent to the Worker and Workers AI.
 - The application does not log message bodies. Cloudflare still processes request/inference data and technical metadata under its policies; rate limiting uses the connecting IP.
 - No retailer or clinic receives conversations, results or demo summaries.
-- Fonts are self-hosted. External service links open only when selected.
+- Fonts are self-hosted. External service links open only when selected. The optional testing map loads OpenStreetMap tiles after an explicit Load map action; OSM receives technical request metadata and the viewed map area, never chat text. No device geolocation is requested.
 - Browser history, downloads, printouts and device speech services are outside the clear-session control. Optional read-aloud uses the browser/OS speech implementation.
 
 See [privacy and pilot readiness](docs/PRIVACY_AND_SAFETY.md).
@@ -211,3 +211,7 @@ Code is released under the [MIT License](LICENSE). Third-party packages and font
 ## Final-round update — 15 November 2026
 
 Invite → Explore → Choose → Connect. Home offers direct testing options or optional UU conversation. Each testing option has its own official service destination and external privacy notice; the editable demo plan is optional. Mixed-intent safety rules run before casual-contact answers. No booking or referral is sent. Provider information uses the official ACTS page; online service availability must be confirmed directly. Verification: 19 automated tests and production build pass. The 50+ rationale cites the November 2024 CHP recommendations, page 3; it concerns late presentation, not individual infection risk.
+
+## Testing-points map — 18 November 2026
+
+The bilingual map preserves Rebecca’s map-and-cards design. Four approximate building markers have checked provider addresses; six other organisations are listed without invented coordinates. Outreach enquiries are separate from fixed venues. Load map is optional, with a complete address list available without third-party tiles. See [map review and sources](docs/reviews/2026-11-18-map-integration.md).

@@ -95,3 +95,7 @@ npm run deploy  # 發佈至已登入的 Cloudflare 帳戶
 ## Final-round update — 15 November 2026
 
 Invite → Explore → Choose → Connect. Home offers direct testing options or optional UU conversation. Each testing option has its own official service destination and external privacy notice; the editable demo plan is optional. Mixed-intent safety rules run before casual-contact answers. No booking or referral is sent. Provider information uses the official ACTS page; online service availability must be confirmed directly. Verification: 19 automated tests and production build pass. The 50+ rationale cites the November 2024 CHP recommendations, page 3; it concerns late presentation, not individual infection risk.
+
+## 檢測點地圖更新（2026 年 11 月 18 日）
+
+保留隊友的地圖與服務卡片設計，加入四個已核對服務地址的大樓概約圖釘、其他機構列表及外展查詢。互動底圖須點擊「載入地圖」才向 OpenStreetMap 發出請求；服務商會收到 IP、瀏覽器資料、網站來源及所查看的範圍，不會收到對話，亦不會要求裝置定位。不載入底圖仍可使用完整服務列表。詳見[核查及整合紀錄](docs/reviews/2026-11-18-map-integration.md)。

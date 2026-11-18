@@ -50,3 +50,7 @@ The repository does not contain a partner commitment, ethics approval or claim o
 ## Final-round update — 15 November 2026
 
 Invite → Explore → Choose → Connect. Home offers direct testing options or optional UU conversation. Each testing option has its own official service destination and external privacy notice; the editable demo plan is optional. Mixed-intent safety rules run before casual-contact answers. No booking or referral is sent. Provider information uses the official ACTS page; online service availability must be confirmed directly. Verification: 19 automated tests and production build pass. The 50+ rationale cites the November 2024 CHP recommendations, page 3; it concerns late presentation, not individual infection risk.
+
+## Optional testing map
+
+OpenStreetMap tiles load only after Load map is selected, with no location permission, account or persistent consent storage. Tile requests disclose the visitor’s IP, browser metadata, site origin and viewed map area to OSM, but not chat text or answers. Tile images set an origin-only cross-origin referrer to comply with OSM policy; other external links keep `noreferrer`. CSP allows only the specific tile image host in addition to existing sources. Hiding/leaving the map stops future tile loading (requests already issued may complete). The accessible service cards remain usable if tiles fail. Sources and approximate building coordinates were checked on 18 November 2026 and need periodic review.

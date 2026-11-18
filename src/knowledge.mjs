@@ -94,8 +94,8 @@ export const knowledge = {
     source: "weather",
   },
   location: {
-    en: "You can explore provider-based testing through the Department of Health’s ACTS service or review official self-testing information. Open the testing options below, choose a service and check its current arrangements before visiting or ordering. H+ has not booked a test or sent your conversation.",
-    zh: "你可以透過衞生署 ACTS 了解由工作人員支援的檢測，或查看官方自測資訊。開啟下面的檢測選項，選擇服務，再確認最新到訪或訂購安排。H+ 未代你預約或傳送對話。",
+    en: "You can explore provider-based testing through the Department of Health’s ACTS service or review official self-testing information. Open the testing-points map below for provider addresses, or use Testing options for self-testing information. Check current arrangements directly before visiting or ordering. H+ has not booked a test or sent your conversation.",
+    zh: "你可以透過衞生署 ACTS 了解由工作人員支援的檢測，或查看官方自測資訊。開啟下面的檢測點地圖查看機構地址，或到「檢測選項」查看自測資訊。到訪或訂購前請直接確認最新安排。H+ 未代你預約或傳送對話。",
     source: "acts",
   },
   unknown: {
@@ -121,7 +121,7 @@ export function localTopic(input) {
     return "privacy";
   if (/kit|cost|free|price|130|自測|自测|費用|费用|免費|免费/.test(t))
     return "kit";
-  if (/where.*test|test.*near|testing.*location|邊度.*檢測|哪里.*检测|檢測.*地點|檢測.*附近/.test(t)) return "location";
+  if (/where.*test|test.*near|testing.*location|(?:hiv|test(?:ing)?|clinic).*(?:map|address|location)|(?:map|address|nearest).*test|(?:檢測|检测|測試|测试).*(?:地圖|地图|地址|邊度|哪里)|(?:地圖|地图|附近).*(?:檢測|检测)|邊度.*檢測|哪里.*检测|檢測.*地點|檢測.*附近/.test(t)) return "location";
   if (/clinic|appoint|provider|診所|诊所|預約|预约|服務點/.test(t))
     return "clinic";
   if (/test|檢測|检测|篩查|筛查/.test(t)) return "testing";

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import {
   ArrowUpRight,
   ArrowRight,
@@ -28,9 +28,12 @@ import {
   Info,
   Accessibility,
   Code2,
+  Users,
 } from "lucide-react";
 import QRCode from "qrcode";
 import { answer, localTopic, canConfirm, sources } from "./knowledge.mjs";
+import { locations, appointmentNgos, outreach, volunteering, pilotDemos } from "./locations.mjs";
+const LocationsMap = lazy(() => import("./LocationsMap"));
 type Lang = "en" | "zh";
 type Msg = {
   role: "user" | "assistant";
@@ -317,6 +320,9 @@ function App() {
               onClick={() => go("journey")}
             >
               {t("Meet UU", "認識悠悠")}
+            </button>
+            <button className={page === "locations" ? "active" : ""} onClick={() => go("locations")}>
+              {t("Testing points", "檢測點")}
             </button>
             <button
               className={page === "impact" ? "active" : ""}
@@ -814,7 +820,7 @@ function App() {
                                 <ExternalLink size={11} />
                               </a>
                             )}
-                            {m.topic === "location" && <button className="button secondary" onClick={() => { next(2); go("journey"); }}>{t("Find testing services", "查看檢測服務")}<ArrowRight size={16}/></button>}
+                            {m.topic === "location" && <button className="button secondary" onClick={() => go("locations")}>{t("View testing points map", "查看檢測點地圖")}<MapPin size={16}/></button>}
                             {m.mode && (
                               <small className="answer-mode">
                                 {m.mode === "ai"
@@ -1551,7 +1557,229 @@ function App() {
             </div>
           </section>
         )}
-        {!["home", "journey", "impact", "evidence"].includes(page) && (
+        {page === "locations" && (
+          <section className="shell locations">
+            <div className="eyebrow">
+              {t("OFFICIAL TESTING POINTS", "官方檢測點")}
+            </div>
+            <h1 className="page-title">
+              {t("Find a testing service.", "尋找適合你的檢測服務。")}
+            </h1>
+            <p className="intro-text">
+              {t(
+                "Explore publicly listed services in Hong Kong. Green pins show approximate building locations; check appointment details with the provider. Other organisations and outreach contacts are listed below.",
+                "查看香港公開列出的服務。綠色圖釘標示大樓概約位置，請先向機構確認預約安排。其他機構及外展聯絡資料列於下方。",
+              )}
+            </p>
+            <div className="locations-layout">
+              <div>
+                <Suspense fallback={<p>{t("Preparing map…", "正在準備地圖……")}</p>}><LocationsMap lang={lang} /></Suspense>
+                <p className="map-legend">
+                  <span className="map-legend-item">
+                    <span className="map-legend-swatch" />
+                    {t("Testing point", "檢測點")}
+                  </span>
+
+                </p>
+              </div>
+              <div className="locations-list">
+                {locations.map((loc) => (
+                  <article className="location-card" key={loc.id}>
+                    <div className="location-card-head">
+                      <span className={`location-type location-type-${loc.type}`}>
+                        {loc.type === "govt"
+                          ? t("Government", "政府")
+                          : loc.type === "ngo"
+                            ? t("NGO", "非政府機構")
+                            : t("Treatment", "治療中心")}
+                      </span>
+                      {loc.free && (
+                        <span className="location-free">
+                          {loc.anonymous ? t("Free · anonymous", "免費・不記名") : t("Free testing", "免費檢測")}
+                        </span>
+                      )}
+                    </div>
+                    <h3>{lang === "en" ? loc.name.en : loc.name.zh}</h3>
+                    <p className="location-org">
+                      {lang === "en" ? loc.org.en : loc.org.zh}
+                    </p>
+                    <p className="location-address">
+                      <MapPin size={14} />
+                      {lang === "en" ? loc.address.en : loc.address.zh}
+                    </p>
+                    <p className="location-hours">
+                      <Clock size={14} />
+                      {lang === "en" ? loc.hours.en : loc.hours.zh}
+                    </p>
+                    <p className="location-note">
+                      {lang === "en" ? loc.note.en : loc.note.zh}
+                    </p>
+                    <a className="source-link" href={`tel:+852${loc.phone.replace(/\s/g, "")}`}>
+                      {t("Call", "致電")} · {loc.phone}
+                    </a>
+                    <a
+                      className="source-link"
+                      href={loc.url}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      {t("Official source", "官方來源")}
+                      <ArrowUpRight size={14} />
+                    </a>
+                  </article>
+                ))}
+              </div>
+            </div>
+            <p className="micro">
+              {t(
+                "Sources checked 18 November 2026. Building markers are approximate, not entrances. H+ does not book appointments. Confirm the exact address, eligibility and available times with the provider before visiting.",
+                "來源核對日期：2026 年 11 月 18 日。圖釘是大樓概約位置，並非入口。H+ 不會代為預約；到訪前請向機構確認詳細地址、服務對象及可用時段。",
+              )}
+            </p>
+
+            {/* Appointment-only NGOs */}
+            <div className="section-head locations-subhead">
+              <div>
+                <div className="eyebrow">
+                  {t("MORE SERVICES BY APPOINTMENT", "更多須預約的機構")}
+                </div>
+                <h2>{t("More community services.", "其他社區服務。")}</h2>
+              </div>
+              <p>
+                {t(
+                  "These organisations are listed in the Department of Health directory. Contact them for eligibility, appointments and the current service address.",
+                  "以下機構列於衞生署名錄。請直接查詢服務對象、預約方式及現時服務地址。",
+                )}
+              </p>
+            </div>
+            <div className="appointment-grid">
+              {appointmentNgos.map((n) => (
+                <article className="appointment-card" key={n.id}>
+                  <h3>{lang === "en" ? n.name.en : n.name.zh}</h3>
+                  <p className="appointment-area">
+                    <MapPin size={13} />
+                    {lang === "en" ? n.area.en : n.area.zh}
+                  </p>
+                  <p className="appointment-note">
+                    {lang === "en" ? n.note.en : n.note.zh}
+                  </p>
+                  {n.phone !== "—" && (
+                    <p className="appointment-phone">
+                      {lang === "en" ? "Contact" : "聯絡"} · {n.phone}
+                    </p>
+                  )}
+                  <a className="source-link" href={n.url} target="_blank" rel="noreferrer">
+                    {t("Official source", "官方來源")}
+                    <ArrowUpRight size={13} />
+                  </a>
+                </article>
+              ))}
+            </div>
+
+            {/* Outreach / street-based testing */}
+            <div className="section-head locations-subhead">
+              <div>
+                <div className="eyebrow">
+                  {t("OUTREACH & POP-UP TESTING", "外展／快閃檢測")}
+                </div>
+                <h2>{t("Ask about outreach services.", "了解外展服務。")}</h2>
+              </div>
+              <p>
+                {t(
+                  "These providers describe outreach or mobile services. Contact them for current arrangements; these cards are not scheduled events or fixed testing venues.",
+                  "以下機構提供外展或流動服務資訊，請向機構查詢最新安排；卡片並非已排期活動或固定檢測場地。",
+                )}
+              </p>
+            </div>
+            <div className="outreach-grid">
+              {outreach.map((o) => (
+                <article className="outreach-card" key={o.id}>
+                  <div className="outreach-meta">
+                    <span className="outreach-org">
+                      {lang === "en" ? o.org.en : o.org.zh}
+                    </span>
+                    <span className="pill">{lang === "en" ? o.format.en : o.format.zh}</span>
+                  </div>
+                  <h3>{lang === "en" ? o.name.en : o.name.zh}</h3>
+                  <p className="outreach-who">
+                    <Users size={13} />
+                    {lang === "en" ? o.who.en : o.who.zh}
+                  </p>
+                  <p className="outreach-detail">
+                    {lang === "en" ? o.detail.en : o.detail.zh}
+                  </p>
+                  {o.phone !== "—" && (
+                    <p className="outreach-phone">
+                      {lang === "en" ? "Contact" : "聯絡"} · {o.phone}
+                    </p>
+                  )}
+                  <a className="source-link" href={o.url} target="_blank" rel="noreferrer">
+                    {t("Official source", "官方來源")}
+                    <ArrowUpRight size={13} />
+                  </a>
+                </article>
+              ))}
+            </div>
+            <p className="micro outreach-note">
+              {t(
+                "Outreach times and venues change per event — confirm with the organiser on the day.",
+                "外展時間地點按活動變動，請當日向主辦機構確認。",
+              )}
+            </p>
+
+            {/* Volunteering — clearly separate, secondary */}
+            <div className="volunteer-note">
+              <div className="volunteer-icon">
+                <Heart size={18} />
+              </div>
+              <div>
+                <strong>
+                  {t("Want to volunteer instead?", "想成為義工、而非接受檢測？")}
+                </strong>
+                <p>
+                  {t(
+                    "Volunteering is a different thing from getting tested. Roles are organised by each NGO — contact them directly to apply.",
+                    "義工與檢測是兩回事。義工崗位由各機構安排，請直接向機構申請。",
+                  )}
+                </p>
+                <div className="volunteer-links">
+                  {volunteering.map((v) => (
+                    <a key={v.id} href={v.url} target="_blank" rel="noreferrer">
+                      {lang === "en" ? v.name.en : v.name.zh}
+                      <ArrowUpRight size={13} />
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Pilot demonstration scenarios */}
+            <div className="section-head locations-subhead">
+              <div>
+                <div className="eyebrow">
+                  {t("PILOT SCENARIOS (ILLUSTRATIVE)", "試點情境（示意）")}
+                </div>
+                <h2>{t("What a partner-led pilot could look like.", "合作試點可能的形態。")}</h2>
+              </div>
+              <p>
+                {t(
+                  "Clearly labelled illustrative scenarios — not real services. They show how a consented partner could host H+.",
+                  "明確標註為示意情境，並非真實服務，展示合作機構可如何參與 H+。",
+                )}
+              </p>
+            </div>
+            <div className="pilot-strip">
+              {pilotDemos.map((p) => (
+                <article className="pilot-card" key={p.id}>
+                  <span className="pill">{lang === "en" ? p.type.en : p.type.zh}</span>
+                  <h3>{lang === "en" ? p.name.en : p.name.zh}</h3>
+                  <p>{lang === "en" ? p.detail.en : p.detail.zh}</p>
+                </article>
+              ))}
+            </div>
+          </section>
+        )}
+        {!["home", "journey", "impact", "evidence", "locations"].includes(page) && (
           <section className="shell closing">
             <h1>Page not found</h1>
             <button className="button primary" onClick={() => go("home")}>
@@ -1563,6 +1791,7 @@ function App() {
       <nav className="mobile-dock" aria-label={t("Quick navigation", "快捷導覽")}>
         <button aria-current={page === "home" ? "page" : undefined} onClick={() => go("home")}><Leaf size={20}/>{t("Home", "首頁")}</button>
         <button aria-current={page === "journey" && step === 2 ? "page" : undefined} onClick={() => { next(2); go("journey"); }}><MapPin size={20}/>{t("Testing options", "檢測選項")}</button>
+        <button aria-current={page === "locations" ? "page" : undefined} onClick={() => go("locations")}><MapPin size={20}/>{t("Map", "地圖")}</button>
         <button aria-current={page === "journey" && step === 1 ? "page" : undefined} onClick={() => { next(1); go("journey"); }}><MessageCircle size={20}/>{t("Ask UU", "問悠悠")}</button>
       </nav>
       <footer className="shell">
@@ -1644,6 +1873,7 @@ function App() {
                     "轉介均為模擬，診所不會收到計劃。下載、列印、瀏覽記錄及裝置語音服務各有私隱考量，清除此對話不會刪除它們。朗讀可能使用裝置的語音服務。",
                   )}
                 </p>
+                <p>{t("The optional map loads OpenStreetMap tiles only after you choose Load map. OpenStreetMap receives your IP address, browser information, our site origin and the map area viewed; it does not receive your conversation. H+ does not request your device location.", "自選地圖只在你點擊「載入地圖」後讀取 OpenStreetMap 底圖。OpenStreetMap 會收到 IP 位址、瀏覽器資料、本網站來源及所查看的地圖範圍，不會收到對話。H+ 不會要求你的裝置位置。")}</p>
                 <button
                   className="button primary full"
                   onClick={() => setModal(null)}

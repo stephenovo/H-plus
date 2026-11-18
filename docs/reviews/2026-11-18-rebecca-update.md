@@ -30,3 +30,7 @@ SVG UU mascot, active-navigation underline, mock-phone overflow correction, adap
 - `npm run check`: 20/20 tests passed; TypeScript and Vite production build passed.
 - Browser: English confirmation shown; Escape cancels and returns focus to Clear & leave; Traditional Chinese large-text confirmation renders correctly; confirming returns to the homepage.
 - This change does not modify health guidance, API contracts, dependencies, deployment configuration or service destinations.
+
+## Follow-up
+
+The map was subsequently repaired and integrated at the user's request. See [map integration review](2026-11-18-map-integration.md) for accepted data, corrected coordinates, privacy behavior and verification. The original deferral above describes the initial review, not the current map status.
