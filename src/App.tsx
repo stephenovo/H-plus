@@ -85,7 +85,7 @@ function App() {
   const [page, setPage] = useState(location.hash.slice(1) || "home");
   const [menu, setMenu] = useState(false);
   const [large, setLarge] = useState(false);
-  const [modal, setModal] = useState<"privacy" | "receipt" | null>(null);
+  const [modal, setModal] = useState<"privacy" | "receipt" | "leave" | null>(null);
   const [qr, setQr] = useState("");
   const t = (en: string, zh: string) => (lang === "en" ? en : zh);
   const [step, setStep] = useState(0);
@@ -139,7 +139,7 @@ function App() {
   useEffect(() => {
     if (!modal) return;
     const previous = document.activeElement as HTMLElement | null;
-    const box = document.querySelector("[role=dialog]");
+    const box = document.querySelector("[role=dialog], [role=alertdialog]");
     const focusables = () =>
       Array.from(
         box?.querySelectorAll<HTMLElement>("button,a[href],input,textarea") ||
@@ -617,7 +617,7 @@ function App() {
                   {t("Let’s take it one step at a time.", "我哋，一步一步嚟。")}
                 </h1>
               </div>
-              <button className="text-button" onClick={leave}>
+              <button className="text-button" onClick={() => setModal("leave")}>
                 <X size={16} />
                 {t("Clear & leave", "清除並離開")}
               </button>
@@ -772,10 +772,12 @@ function App() {
                         </span>
                         <h2>{t("Questions before you decide?", "決定之前，有咩想問？")}</h2>
                       </div>
-                      <span className="status-badge">
+                      <span className="status-badge" title={ai
+                        ? t("AI matches your question to prepared guidance. You can turn AI off in Preferences.", "AI 將問題配對至預先編寫的指引。你可在偏好設定關閉 AI。")
+                        : t("Using built-in guidance with sources for health information.", "使用內置指引，健康資訊附有來源。")}>
                         <span />
                         {ai
-                          ? t("AI on · optional", "AI 已開・自選")
+                          ? t("AI on · optional", "AI 已開（可關）")
                           : t("Built-in guide", "內置指引")}
                       </span>
                     </div>
@@ -890,6 +892,7 @@ function App() {
                         )}
                         value={input}
                         maxLength={800}
+                        disabled={busy}
                         onChange={(e) => setInput(e.target.value)}
                       />
                       <button
@@ -1589,7 +1592,8 @@ function App() {
         <div className="modal-backdrop" onClick={() => setModal(null)}>
           <section
             className={`modal ${modal === "receipt" ? "receipt-modal" : ""}`}
-            role="dialog"
+            role={modal === "leave" ? "alertdialog" : "dialog"}
+            aria-describedby={modal === "leave" ? "leave-description" : undefined}
             aria-modal="true"
             aria-labelledby="modal-title"
             onClick={(e) => e.stopPropagation()}
@@ -1601,7 +1605,22 @@ function App() {
             >
               <X />
             </button>
-            {modal === "privacy" ? (
+            {modal === "leave" ? (
+              <>
+                <ShieldCheck size={32} />
+                <h2 id="modal-title">{t("Clear this conversation?", "清除此對話？")}</h2>
+                <p id="leave-description">{t(
+                  "Your conversation and choices will be removed from this tab. This cannot be undone. Downloads, printouts and browser history are not erased.",
+                  "對話與選擇會從此分頁移除，且無法復原。下載、列印及瀏覽記錄不會被刪除。",
+                )}</p>
+                <button className="button secondary full" onClick={() => setModal(null)}>
+                  {t("Keep exploring", "繼續瀏覽")}
+                </button>
+                <button className="button primary full" onClick={() => { setModal(null); leave(); }}>
+                  {t("Confirm & clear", "確認清除")}
+                </button>
+              </>
+            ) : modal === "privacy" ? (
               <>
                 <ShieldCheck size={32} />
                 <h2 id="modal-title">

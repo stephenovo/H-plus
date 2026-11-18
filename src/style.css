@@ -2176,3 +2176,32 @@ header nav button.active:after { left:0; right:0; bottom:5px; width:auto; height
   margin:0;
 }
 .app .switch.on span { transform:translateX(18px); }
+
+/* Rebecca's broader large-text coverage, retaining mobile and switch fixes. */
+.large .path-card p,
+.large .uu-banner p,
+.large .section-head > p,
+.large .guide-profile p,
+.large .sidebar-note p,
+.large .intro-text,
+.large .panel li,
+.large .panel .muted,
+.large .insight p,
+.large .privacy-principle p,
+.large .preference-row p,
+.large .next-step-card p { font-size:20px; line-height:1.8; }
+.large .preference-row strong,
+.large .consent-box strong,
+.large .option strong,
+.large .field-label,
+.large textarea,
+.large .chat-form input,
+.large .check-row,
+.large .sources strong,
+.large .metric > span,
+.large .metric small,
+.large .panel-title,
+.large .summary pre { font-size:18px; }
+.large .icon-button,.large .language { min-height:48px; min-width:48px; }
+.chat-form input:disabled { opacity:.65; cursor:wait; }
+.modal .button + .button { margin-top:12px; }
