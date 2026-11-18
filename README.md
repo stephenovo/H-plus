@@ -169,6 +169,8 @@ H-plus/
 
 ## Deployment
 
+The custom domain is https://hplushealth.me. `wrangler.jsonc` tracks its Worker Custom Domain binding and explicitly preserves the existing workers.dev address. Cloudflare manages DNS and TLS for this binding; Namecheap delegates DNS to Cloudflare. The `www` hostname is not configured.
+
 The earlier demo address redirects to this deployment. The `legacy-redirect/` Worker preserves links that were shared before the rename.
 
 
